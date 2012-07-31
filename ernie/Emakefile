@@ -1,0 +1,11 @@
+{'elib/*',    
+    [debug_info,   
+    {i,"include"},   
+    {outdir,"ebin"}   
+    ]}.
+
+{'examples/*',    
+    [debug_info,   
+    {i,"include"},   
+    {outdir,"ebin"}   
+    ]}.    
