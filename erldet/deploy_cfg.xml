@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<deploy>
+	<app>
+		<name>game</name>
+		<archive>e:/game.tar</archive>
+	</app>
+	<hosts>
+		<host>
+			<app_id>sg_0</app_id>
+			<name>192.168.24.204</name>
+			<deploy_path>/home/dzr/</deploy_path>
+			<run_script>script/run_0.sh</run_script>
+			<stop_script>script/stop_0.sh</stop_script>
+			<status_script>script/status_0.sh</status_script>
+		</host>
+	</hosts>
+</deploy>
