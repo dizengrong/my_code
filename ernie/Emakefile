@@ -9,3 +9,9 @@
     {i,"include"},   
     {outdir,"ebin"}   
     ]}.    
+
+{'lib/erlapi/*',    
+    [debug_info,   
+    {i,"include"},   
+    {outdir,"ebin"}   
+    ]}.
