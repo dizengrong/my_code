@@ -116,3 +116,8 @@ def get_lastest_datas(host_data):
 
 	# 4. svn commit the lastest data files
 
+
+def test_can_work():
+	env.host_string = 'root@192.168.24.159'
+	env.password = '123456'
+	run('ls')
