@@ -13,6 +13,11 @@
 			<run_script>script/run_0.sh</run_script>
 			<stop_script>script/stop_0.sh</stop_script>
 			<status_script>script/status_0.sh</status_script>
+			<datas_config>
+				<svn_path></svn_path>
+				<datas_desc_xml></datas_desc_xml>
+				<save_path></save_path>
+			</datas_config>
 		</host>
 	</hosts>
 </deploy>

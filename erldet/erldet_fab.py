@@ -38,6 +38,17 @@ def get_hosts_and_app(file_name):
 		run_script    = get_nodevalue(get_xmlnode(node, 'run_script')[0])
 		stop_script   = get_nodevalue(get_xmlnode(node, 'stop_script')[0])
 		status_script = get_nodevalue(get_xmlnode(node, 'status_script')[0])
+		datas_nodes = get_xmlnode(node, 'datas_config')
+		if datas_nodes != []:
+			datas_node     = datas_nodes[0]
+			svn_path       = get_nodevalue(get_xmlnode(datas_nodes, 'svn_path')[0])
+			datas_desc_xml = get_nodevalue(get_xmlnode(datas_nodes, 'datas_desc_xml')[0])
+			save_path      = get_nodevalue(get_xmlnode(datas_nodes, 'save_path')[0])
+			
+			datas_config   = (svn_path, datas_desc_xml, save_path)
+		else
+			datas_config = None
+
 		
 		host_data   = {'name': host_name, 
 					   'app_id': app_id,
@@ -45,7 +56,8 @@ def get_hosts_and_app(file_name):
 					   'deploy_path': deploy_path,
 					   'run_script': run_script,
 					   'stop_script': stop_script,
-					   'status_script': status_script}
+					   'status_script': status_script,
+					   'datas_config': datas_config}
 		host_dict[app_id] = host_data
 
 	return (app_data, host_dict)
@@ -58,9 +70,11 @@ def set_hosts():
 
 # @hosts(g_single_host)
 def deploy(host_data):
-	if not is_deploy(host_data, g_app_data[name]):
+	if not is_deploy(host_data, g_app_data['name']):
+		env.host_string = 'root@' + host_data['name']
+		env.password = host_data['password']
 		basename = path.basename(full_path),
-		fabric_op.put(g_app_data[archive], host_data['deploy_path'])
+		fabric_op.put(g_app_data['archive'], host_data['deploy_path'])
 		with fabric_op.cd(host_data['deploy_path']):
 			run('tar xzf ' + basename)
 	else
@@ -68,26 +82,37 @@ def deploy(host_data):
 
 def deploy_all():
 	for host_data in env.hosts:
-		env.host_string = 'root@' + host_data['name'] + ":" + host_data['password']
 		deploy(host_data)
 
 def is_deploy(host_data, app_name):
 	False # TO-DO: check if the path exist
 
-def run(host_data):
-	with fabric_op.cd(host_data['deploy_path']):
-			run('tar xzf ' + basename)
+def start(host_data):
+	env.host_string = 'root@' + host_data['name']
+	env.password = host_data['password']
+	with fabric_op.cd(host_data['deploy_path'] + g_app_data['app_name'] + 'script'):
+		run(host_data['run_script'])
 
-# def test():
-#     local("./manage.py test my_app")
+def start_all():
+	for host_data in env.hosts:
+		start(host_data)
 
-# def commit():
-#     local("git add -p && git commit")
+def stop(host_data):
+	env.host_string = 'root@' + host_data['name']
+	env.password = host_data['password']
+	with fabric_op.cd(host_data['deploy_path'] + g_app_data['app_name'] + 'script'):
+		run(host_data['stop_script'])
 
-# def push():
-#     local("git push")
+def stop_all():
+	for host_data in env.hosts:
+		stop(host_data)
 
-# def prepare_deploy():
-#     test()
-#     commit()
-#     push()
+def get_lastest_datas(host_data):
+	# 1.svn up config file generator code
+
+	# 2.parse datas_desc_xml file 
+
+	# 3.get new data files to the destination folder
+
+	# 4. svn commit the lastest data files
+
