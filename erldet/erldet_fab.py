@@ -33,6 +33,7 @@ def get_hosts_and_app(file_name):
 	for node in host_nodes:
 		app_id        = get_nodevalue(get_xmlnode(node, 'app_id')[0])
 		host_name     = get_nodevalue(get_xmlnode(node, 'name')[0])
+		password      = get_nodevalue(get_xmlnode(node, 'password')[0])
 		deploy_path   = get_nodevalue(get_xmlnode(node, 'deploy_path')[0])
 		run_script    = get_nodevalue(get_xmlnode(node, 'run_script')[0])
 		stop_script   = get_nodevalue(get_xmlnode(node, 'stop_script')[0])
@@ -40,6 +41,7 @@ def get_hosts_and_app(file_name):
 		
 		host_data   = {'name': host_name, 
 					   'app_id': app_id,
+					   'password': password,
 					   'deploy_path': deploy_path,
 					   'run_script': run_script,
 					   'stop_script': stop_script,
@@ -66,7 +68,7 @@ def deploy(host_data):
 
 def deploy_all():
 	for host_data in env.hosts:
-		env.host_string = 'root@' + host_data['name']
+		env.host_string = 'root@' + host_data['name'] + ":" + host_data['password']
 		deploy(host_data)
 
 def is_deploy(host_data, app_name):

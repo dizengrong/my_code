@@ -8,6 +8,7 @@
 		<host>
 			<app_id>sg_0</app_id>
 			<name>192.168.24.204</name>
+			<password>123456</password>
 			<deploy_path>/home/dzr/</deploy_path>
 			<run_script>script/run_0.sh</run_script>
 			<stop_script>script/stop_0.sh</stop_script>
