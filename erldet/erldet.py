@@ -1,5 +1,6 @@
 from fabric.api import local
-from fabric.operations import operations as fabric_op
+from fabric import operations as fabric_op
+from fabric.api import env, run, cd
 from xml.dom import minidom
 from os import path
 
@@ -46,7 +47,7 @@ def get_hosts_and_app(file_name):
 			save_path      = get_nodevalue(get_xmlnode(datas_nodes, 'save_path')[0])
 			
 			datas_config   = (svn_path, datas_desc_xml, save_path)
-		else
+		else:
 			datas_config = None
 
 		
@@ -77,7 +78,7 @@ def deploy(host_data):
 		fabric_op.put(g_app_data['archive'], host_data['deploy_path'])
 		with fabric_op.cd(host_data['deploy_path']):
 			run('tar xzf ' + basename)
-	else
+	else:
 		print("already deployed, host data: %s" % host_data)
 
 def deploy_all():
@@ -115,6 +116,7 @@ def get_lastest_datas(host_data):
 	# 3.get new data files to the destination folder
 
 	# 4. svn commit the lastest data files
+	pass
 
 
 def test_can_work():

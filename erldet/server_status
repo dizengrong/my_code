@@ -1,0 +1,5 @@
+server node: 'sg_0@192.168.24.159' is [die]
+
+log node: 'log_0@127.0.0.1' is [die]
+
+=========== end of get servre status ===========~n

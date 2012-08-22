@@ -1,0 +1,1318 @@
+<?xml version='1.0'?> 
+<!--   
+示例：
+	<file mod_name = 'data_monster' describe = '怪物配置数据 ' user_define = '-include("common.hrl").'>
+		<function type = '1' write_end_dot = '0' ignore = '2 != 0;3 != 0;4 != 0;5 != 0;6 != 0;7 != 0'>
+			<sql>SELECT 怪物组合ID,位置1怪物,位置2怪物,位置3怪物,位置4怪物,位置5怪物,位置6怪物,组合名  FROM 怪物堆$</sql>
+			<sql_para>怪物组合ID,位置1怪物,位置2怪物,位置3怪物,位置4怪物,位置5怪物,位置6怪物,组合名</sql_para>
+			<comment>获取怪物堆中的怪物</comment>
+			<name>get_monster_group</name>
+			<format>
+				get_monster_group({怪物组合ID}) ->
+					[@2{{位置1怪物}, 1},@2 @3{{位置2怪物}, 2},@3 @4{{位置3怪物}, 3},@4 @5{{位置4怪物}, 4},@5 @6{{位置5怪物}, 5},@6 @7{{位置6怪物}, 6}@7]
+			</format>
+		</function>
+	</file>
+说明：
+	1）可以有多个file元素，一个file元素也可以有多个function元素
+	2）file元素的mod_name和describe属性是必须的，user_define属性是可选的
+	3）function元素的type属性是必须的，ignore属性是可选的(用来做过滤的)
+	4）function元素的write_end_dot属性（erlang源码才需要的）是可选的，
+	        大部分情况下不需要，只是在多条记录生成多个函数时但他们不是同一function caluse这是需要以”.“结尾，而不是”;“
+	        这种情况下需将write_end_dot的值设置为1
+	5）function元素的子元素sql_para是可选的，当sql元素总的sql语句很复杂时，程序解析不出其中的字段名时，
+		需要以sql_para来按select中字段出现的顺序来指定字段名，字段名之间以“,”分隔
+	6）元素缩进要以tab键来控制
+
+file元素的user_define属性为可选的，用来包含其他要输出的东西，比如头文件包含代码
+file元素的mod_name和describe属性是必须的，分别代表了要生成的文件名和显示在web页面的概要信息
+
+
+每一个function元素，中的type字段定义如下：
+0.这种情况不会从数据库读取数据，所以sql元素可以不写，format元素中的内容将直接写入文件中
+1.表示这个函数的生成只是填充
+2.表示生成的函数的返回值是将select语句后面的字段进行组合生成一个值，例如：
+  get_all_id() -> [Id1, Id2, Id3].
+  get_all_id2() -> [{Id1, Type1}, {Id2, Type2}, {Id3, Type3}].
+3.这种类型的function元素必须要有一个parameter_index属性，
+     它的值为select语句后面的字段的序号值，并且sql语句要使用 ORDER BY 以parameter_index指定的字段
+     这类function的意思是生成的函数会以parameter_index指定的字段为参数来生成来type=2类似的函数，例如：
+  get_all_id_by_type(Type1) -> [Id1, Id2, Id3];
+  get_all_id_by_type(Type2) -> [Id4, Id5, Id6].
+
+function 的ignore元素是可选的，用来确定在某个表达式为false的情况下，其对应的字段的内容不生成
+ignore的表达式如下：
+	"field_index1 == val;field_index2 != val2"（可以使多个表达式）
+目前支持的操作符只有 '==' 和 '!=' ，这个可以扩展的
+field_index为select语句后面的字段的索引值（1、2、3....）
+对应要替换的部分为用@field_index围起来且包含该字段名的部分，例子如下：
+	sql = "select field1, field2, field3 from table"
+	ignore = "1 != 0;3 == 100"
+	format = "func() -> [@1{{field1}, 200},@1 {{field2}, 33}, @3{{field3}, 11}@3]"
+	这是如果field1的值不满足ignore中的表达式的话，就会在生成中忽略掉"{{field1}, 200},"
+  
+format元素，要填充的字段都要为select语句后面的字段名，并且要用{}包裹起来  
+-->
+<document>
+	<file mod_name='data_skill_table' describe='技能配置数据'>
+		<function type='99' >
+			<index>1</index>
+		</function>
+	</file>
+	<file mod_name='data_mon_attr' describe='怪物配置数据'>
+		<function type='99'>
+			<index>2</index>
+		</function>
+	</file>
+	<file mod_name='data_mon_group' describe='怪物堆配置数据'>
+		<function type='99'>
+			<index>3</index>
+		</function>
+	</file>
+	<file mod_name = 'data_role' describe = '角色配置数据' user_define = '-include("role.hrl").'>
+		<function type = '1'>
+			<sql>SELECT ID,名称,主角,性别,职业ID,力量,元神,体魄,敏捷,力量天赋,元神天赋,体魄天赋,敏捷天赋,命中,闪避,暴击,幸运,致命,格挡,反击,破甲,初始技能,初始气血 FROM 佣兵AND人物初始属性$</sql>
+			<comment>获取武将记录</comment>
+			<name>get</name>
+			<format>
+				get({ID}) ->
+					 #role{
+						key                = {0, {ID}},	
+						gd_roleRank        = {主角},
+						gd_name            = "{名称}",		
+						gd_careerID        = {职业ID},	
+						gd_roleSex         = {性别},
+						
+						gd_liliang         = {力量},		
+						gd_yuansheng       = {元神},
+						gd_tipo            = {体魄},		 
+						gd_minjie          = {敏捷},
+						
+						gd_liliangTalent   = {力量天赋},
+						gd_yuanshengTalent = {元神天赋},
+						gd_tipoTalent      = {体魄天赋},
+						gd_minjieTalent    = {敏捷天赋},
+						
+						gd_mingzhong       = {命中},
+						gd_shanbi          = {闪避},	
+						gd_baoji           = {暴击},
+						gd_xingyun         = {幸运},
+						gd_zhiming         = {致命},
+						gd_gedang          = {格挡},	
+						gd_fanji           = {反击},
+						gd_pojia           = {破甲},	
+						
+						gd_roleLevel       = 1,
+						gd_maxHp           = {初始气血},
+						gd_currentHp       = {初始气血},
+						gd_skill           = {初始技能}
+								}
+			</format>
+		</function>
+		<function type = '2'>
+			<sql>SELECT  ID FROM 佣兵AND人物初始属性$ WHERE 主角 = 0</sql>
+			<comment>获取所有非主角武将id</comment>
+			<name>get_all_id</name>
+			<format>
+				get_all_id() -> 
+					[{ID}]
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT ID,官阶,君威,银币 FROM 佣兵AND人物初始属性$ WHERE 主角 = 0</sql>
+			<comment>获取武将的招募条件，返回：{官阶需求, 君威需求, 银币需求}</comment>
+			<name>requirement</name>
+			<format>
+				requirement({ID}) -> {{官阶}, {君威}, {银币}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT ID,力量成长,元神成长,体魄成长,敏捷成长 FROM 佣兵AND人物初始属性$</sql>
+			<comment>升级时4个基础属性的成长值</comment>
+			<name>get_base_attri_added</name>
+			<format>
+				get_base_attri_added({ID}) -> [{力量成长}, {元神成长}, {体魄成长}, {敏捷成长}]
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 编号,阶段平均值,赠送的加成值,下一个阶段的编号 FROM 武将__培养赠送阶段表$</sql>
+			<comment>返回：{培养总和的平均值，奖励值，下一个标识}</comment>
+			<name>foster_flag</name>
+			<format>
+				foster_flag({编号}) -> {{阶段平均值}, {赠送的加成值}, {下一个阶段的编号}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 武将id,力量,元神,体魄,敏捷 FROM 武将__培养概率表$</sql>
+			<comment>返回：{培养总和的平均值，奖励值，下一个标识}</comment>
+			<name>foster_rate</name>
+			<format>
+				foster_rate({武将id}) ->
+					#foster_rate{
+						liliang   = {力量},
+						yuansheng = {元神},
+						tipo      = {体魄},
+						minjie    = {敏捷}
+					}
+			</format>
+		</function>
+		<function type = '1' write_end_dot = '1'>
+			<sql>SELECT 要改变的属性, 函数名, 参数, 公式, 描述 FROM 武将__属性转化公式$</sql>
+			<comment></comment>
+			<name></name>
+			<format>
+				%% {要改变的属性}
+				%% {描述}
+				{函数名}({参数}) -> {公式}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 等级, 升级到该级的总经验 FROM 武将__经验表$ ORDER BY 升级到该级的总经验  DESC </sql>
+			<comment>根据总经验获取对应的等级</comment>
+			<name>get_level</name>
+			<format>
+				get_level(TotalExp) when TotalExp >= {升级到该级的总经验} -> {等级}
+			</format>
+		</function>
+	</file>
+	
+	<file mod_name = 'data_npc' describe = 'npc配置数据'>
+		<function type = '1'>
+			<sql>SELECT NPCID,NPC所在场景,X坐标,Y坐标 FROM npc配置表$</sql>
+			<comment>根据npc坐标获取其坐标信息:{场景id，x坐标，y坐标}.</comment>
+			<name>get_location</name>
+			<format>
+				get_location({NPCID}) ->
+					{{NPC所在场景}, {X坐标}, {Y坐标}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT NPCID,NPC功能ID FROM npc配置表$ WHERE NPC功能ID!=0</sql>
+			<comment>获取对应npc的功能id
+				%% 0：无功能
+				%% 1：酒馆
+				%% 2：帮派
+				%% 3：仓库
+				%% 4：投壶
+				%% 5：寻仙
+				%% 6：押镖
+				%% 7：商店
+				%% 8：通缉
+				%% 9：竞技场
+				%% 10：打造
+				%% 11：排行榜
+				%% 12：闯关
+				%% 13：爬塔
+				%% 14：副本
+				%% 15：其他
+			</comment>
+			<name>get_function</name>
+			<format>
+				get_function({NPCID}) -> {NPC功能ID}
+			</format>
+		</function>
+	</file>
+	
+	<file mod_name = 'data_items' describe = '物品配置数据' user_define = '-include("common.hrl").'>
+		<function type = '1'>
+			<sql>SELECT 原型ID, 素材, 名字, 品质, 等级, 大类型, 小类型, 职业, 是否可强化, 是否可以使用, 是否可洗练, 是否可以升级, 是否可以提升品质, 描述, 说明, 购买价格, 销售价格, 商城价格, 能否丢弃, 堆叠数, 礼包物品, 装备来源, 经验, 力量, 元神, 体魄, 敏捷, 物理攻击, 法术攻击, 物理防御, 法术防御, 气血, 速度, 怒气, 暴击, 闪避, 连击, 反震, 格挡, 命中, 致命, 幸运, 反击, 毒, 破甲 FROM 三国物品$ </sql>
+			<comment>根据npc坐标获取其坐标信息:{场景id，x坐标，y坐标}.</comment>
+			<name>get</name>
+			<format>
+				%% {描述}
+				get({原型ID}) -> 
+					#cfg_item{
+						cfg_ItemID      = {原型ID},
+						cfg_GradeLevel  = {品质},
+						cfg_RoleLevel   = {等级},
+						cfg_FirstType   = {大类型},
+						cfg_SecondType  = {小类型},
+						cfg_Career      = {职业},
+						cfg_BuySilver   = {购买价格},
+						cfg_SellSilver  = {销售价格},
+						cfg_BuyGold     = {商城价格},
+						cfg_IsThrow     = {能否丢弃},
+						cfg_IsUse       = {是否可以使用},
+						cfg_IsXilian    = {是否可洗练},
+						cfg_IsUpgrate   = {是否可以升级},
+						cfg_IsUpquality = {是否可以提升品质},
+						cfg_StackMax    = {堆叠数},
+						cfg_UseEffect   = {礼包物品},
+					    cfg_AttrInfo   = #role_update_attri{
+							gd_liliang    = {力量},			%% 腕力
+							gd_yuansheng  = {元神},			%% 元神
+							gd_tipo       = {体魄},			%% 体魄
+							gd_minjie     = {敏捷},			%% 敏捷	
+							
+							gd_speed      = {速度},			%% 攻击速度
+							gd_baoji      = {暴击},			%% 暴击
+							gd_shanbi     = {闪避},			%% 闪避
+							gd_gedang     = {格挡},			%% 格挡
+							gd_mingzhong  = {命中},			%% 命中率
+							gd_zhiming    = {致命},			%% 致命
+							gd_xingyun    = {幸运},			%% 幸运
+							gd_fanji      = {反击},			%% 反击
+							gd_pojia      = {破甲},			%% 破甲
+							
+							gd_currentHp  = {气血},			%% 当前血量
+							gd_maxHp      = {气血},			%% 最大血量
+							p_def         = {物理防御},		%% 物理防御
+							m_def         = {法术防御},		%% 魔法防御
+							p_att         = {物理攻击},		%% 攻击力
+							m_att         = {法术攻击}		%% 魔攻
+										 }
+					}
+			</format>
+		</function>
+		<function type = '0'>
+			<sql></sql>
+			<comment>获取装备孔数（与装备强化等级有关） get_equip_hole_num(装备强化级别) -> 孔数</comment>
+			<name>get_equip_hole_num</name>
+			<format>
+				get_equip_hole_num(IntensifyLevel) when IntensifyLevel >= 13 -> 5;
+
+				get_equip_hole_num(IntensifyLevel) when IntensifyLevel >= 10 -> 4;
+
+				get_equip_hole_num(IntensifyLevel) when IntensifyLevel >= 7 -> 3;
+
+				get_equip_hole_num(IntensifyLevel) when IntensifyLevel >= 4 -> 2;
+
+				get_equip_hole_num(_IntensifyLevel) -> 1.
+			</format>
+		</function> 
+		<function type = '0'>
+			<sql></sql>
+			<comment>格子扩充费用：get_extend(格子类型) -> {基价, 递增价, 最高价}</comment>
+			<name>get_extend</name> 
+			<format>
+				%% 背包格子扩展消耗
+				get_extend(1) -> {0, 1, 30};
+				
+				%% 仓库格子扩张消耗
+				get_extend(2) -> {0, 1, 10};
+				
+				get_extend(_) -> undefined.
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备类型,装备等级,消耗物品,银币 FROM 装备_启灵$</sql>
+			<comment>启灵消耗：get_qiling_cost(装备类型,装备等级) -> {银币消耗, [{消耗的物品原型,数量},{物品原型,数量}]}</comment>
+			<name>get_qiling_cost</name> 
+			<format>
+				get_qiling_cost({装备类型}, {装备等级}) ->{{银币},{消耗物品}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备类型, 装备等级, 物理攻击, 法术攻击, 物理防御, 法术防御, 血量, 速度, 命中, 闪避, 暴击, 幸运, 致命, 格挡, 反击, 破甲 FROM 装备_启灵$ </sql>
+			<comment>启灵属性获得：get_qiling_attr(装备类型,装备等级) -> #role_update_attri</comment>
+			<name>get_qiling_attr</name> 
+			<format>
+				get_qiling_attr({装备类型}, {装备等级}) ->
+					#role_update_attri{ 
+			     				gd_speed      = {速度},
+								gd_baoji      = {暴击},
+								gd_shanbi     = {闪避},
+								gd_gedang     = {格挡},
+								gd_mingzhong  = {命中},
+								gd_zhiming    = {致命},
+								gd_xingyun    = {幸运},
+								gd_fanji      = {反击},
+								gd_pojia      = {破甲},
+
+								gd_maxHp      = {血量},
+								p_def         = {物理防御},
+								m_def         = {法术防御},
+								p_att         = {物理攻击},
+								m_att         = {法术攻击}
+										}
+			</format>
+		</function>
+
+		<function type = '1'>
+			<sql>SELECT 装备等级,银币,锁定金币 FROM 装备_洗炼消耗$</sql>
+			<comment>洗炼消耗：get_xilian_cost(装备等级) -> {银币消耗, 锁定金币}</comment>
+			<name>get_xilian_cost</name> 
+			<format>
+				get_xilian_cost({装备等级}) ->{{银币},{锁定金币}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备ID, 银币, 材料 FROM 装备_升级消耗$ </sql>
+			<comment>升级消耗：get_upgrate_cost(装备ID) -> {银币,材料}</comment>
+			<name>get_upgrate_cost</name>
+			<format>
+				get_upgrate_cost({装备ID}) ->{{银币},{材料}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 当前装备强化等级, 完美升级所需元宝 FROM 装备_完美升级金币消耗$ </sql>
+			<comment>完美升级金币消耗：get_perfect_upgrate_cost(当前装备强化等级) -> 完美升级所需元宝</comment>
+			<name>get_perfect_upgrate_cost</name>
+			<format>
+				get_perfect_upgrate_cost({当前装备强化等级}) ->{完美升级所需元宝}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备类型, 装备等级, 物理攻击初始值, 法术攻击初始值, 物理防御初始值, 法术防御初始值, 血量初始值, 速度初始值 FROM 装备_传奇_初始值$ </sql>
+			<comment>获取传奇属性：get_legend_attr(装备类型,装备等级) -> #role_update_attri</comment>
+			<name>get_legend_attr</name> 
+			<format>
+				get_legend_attr({装备类型},{装备等级}) ->
+					#role_update_attri{
+		                        gd_speed      = {速度初始值},
+								gd_maxHp      = {血量初始值},
+								p_def         = {物理防御初始值},
+								m_def         = {法术防御初始值},
+								p_att         = {物理攻击初始值},
+								m_att         = {法术攻击初始值}
+										}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备类型,装备等级,物理攻击成长值,法术攻击成长值,物理防御成长值,法术防御成长值,血量成长值,速度成长值 FROM 装备_传奇_强化成长值$ </sql>
+			<comment>获取传奇强化成长值：get_inten_attr(装备类型,装备等级) -> #role_update_attri</comment>
+			<name>get_inten_attr</name> 
+			<format>
+				get_inten_attr({装备类型},{装备等级}) ->
+								#role_update_attri{
+		                        gd_speed      = {速度成长值},
+								gd_maxHp      = {血量成长值},
+								p_def         = {物理防御成长值},
+								m_def         = {法术防御成长值},
+								p_att         = {物理攻击成长值},
+								m_att         = {法术攻击成长值}
+										}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备等级, 装备当前品质, 升到下个品质所需要的银币, 材料 FROM 装备_升品质消耗$ </sql>
+			<comment>装备升品消耗：get_upquality_cost(装备等级,装备当前品质) -> {升到下个品质所需要的银币,材料}</comment>
+			<name>get_upquality_cost</name> 
+			<format>
+				get_upquality_cost({装备等级},{装备当前品质}) ->{{升到下个品质所需要的银币}, {材料}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 人物等级, 全套强化等级, 血, 速度, 攻, 物防, 魔防 FROM 装备_全套强化$  </sql>
+			<comment>全套强化加成：get_inten_all_attr(人物等级,全套强化等级) -> #role_update_attri</comment>
+			<name>get_inten_all_attr</name> 
+			<format>
+				get_inten_all_attr({人物等级},{全套强化等级}) ->
+								#role_update_attri{
+		                        gd_speed      = {速度},
+								gd_maxHp      = {血},
+								p_def         = {物防},
+								m_def         = {魔防},
+								p_att         = {攻},
+								m_att         = {攻}
+										}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 品质, 系数 FROM 装备_品质系数$  </sql>
+			<comment>装备品质对应系数：get_quality_rate(品质) -> 系数</comment>
+			<name>get_quality_rate</name> 
+			<format>
+				get_quality_rate({品质}) ->{系数}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备强化等级, 基础强化成功率 FROM 装备_强化成功率及金币消耗$  </sql>
+			<comment>装备强化对应基础成功率：get_inten_rate(装备强化等级) -> 基础强化成功率</comment>
+			<name>get_inten_rate</name> 
+			<format>
+				get_inten_rate({装备强化等级}) ->{基础强化成功率}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备强化等级, 成功率上限 FROM 装备_强化成功率及金币消耗$  </sql>
+			<comment>装备强化基础成功率上限：get_inten_max_rate(装备强化等级) -> 成功率上限</comment>
+			<name>get_inten_max_rate</name> 
+			<format>
+				get_inten_max_rate({装备强化等级}) ->{成功率上限}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备强化等级, 每1百分比消耗的金币 FROM 装备_强化成功率及金币消耗$  </sql>
+			<comment>升1点成功率的金币消耗：get_inten_uprate_cost(装备强化等级) -> 每1百分比消耗的金币</comment>
+			<name>get_inten_uprate_cost</name> 
+			<format>
+				get_inten_uprate_cost({装备强化等级}) ->{每1百分比消耗的金币}
+			</format>
+		</function>
+		
+		<function type = '1'>
+			<sql>SELECT 	装备类型, 属性种类 FROM 装备_洗炼属性类别$   </sql>
+			<comment>装备洗炼属性类别：get_attr_type_list(装备类型) -> 属性种类</comment>
+			<name>get_attr_type_list</name> 
+			<format>
+				get_attr_type_list({装备类型}) ->{属性种类}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 星级,等级, 属性种类, 属性值上限, 属性值下限 FROM 装备_洗炼属性上下限$  </sql>
+			<comment>洗炼属性上下限：get_xilian_attr_range(星级, 等级, 属性种类) -> {属性值下限, 属性值上限}</comment>
+			<name>get_xilian_attr_range</name> 
+			<format>
+				get_xilian_attr_range({星级}, {等级}, {属性种类}) ->{{属性值下限}, {属性值上限}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT  套装等级, 套装数量, 物理攻击, 法术攻击, 物理防御, 法术防御, 血量, 速度 FROM 装备_套装$ </sql>
+			<comment>获取套装属性：get_suit_attr(套装等级, 套装数量) -> #role_update_attri</comment>
+			<name>get_suit_attr</name> 
+			<format>
+				get_suit_attr({套装等级}, {套装数量}) -> 
+								#role_update_attri{
+		                        gd_speed      = {速度},
+								gd_maxHp      = {血量},
+								p_def         = {物理防御},
+								m_def         = {法术防御},
+								p_att         = {物理攻击},
+								m_att         = {法术攻击}
+										}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备等级, 强化等级, 升一阶的银币消耗, 升级金币消耗 FROM 装备_强化消耗$   </sql>
+			<comment>获取强化消耗：get_inten_cost(装备等级, 强化等级) -> {升一阶的银币消耗,升级金币消耗}</comment>
+			<name>get_inten_cost</name> 
+			<format>
+				get_inten_cost({装备等级},{强化等级}) ->{{升一阶的银币消耗},{升级金币消耗}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 装备等级, 幸运星级, 金币 FROM 装备_洗炼幸运值消耗$  </sql>
+			<comment>洗练星星消耗：get_xilian_star_cost(装备等级, 幸运星级) -> 金币</comment>
+			<name>get_xilian_star_cost</name> 
+			<format>
+				get_xilian_star_cost({装备等级}, {幸运星级}) -> {金币}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石等级, 镶嵌银币费用, 拆卸银币消耗 FROM 装备_宝石镶拆消耗$  </sql>
+			<comment>宝石镶嵌拆卸费用：get_inlay_cost(宝石等级) -> {镶嵌银币费用, 拆卸银币消耗}</comment>
+			<name>get_inlay_cost</name> 
+			<format>
+				get_inlay_cost({宝石等级}) -> {{镶嵌银币费用}, {拆卸银币消耗}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 原型ID, 下个原型ID FROM 装备_原型id与下个原型id对照$ </sql>
+			<comment>升级原型变动：get_upgrate_cfgid(原型ID) -> 下个原型ID</comment>
+			<name>get_upgrate_cfgid</name> 
+			<format>
+				get_upgrate_cfgid({原型ID}) -> {下个原型ID}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID, 合成目标ID FROM 宝石合成表$ </sql>
+			<comment>宝石合成：get_compose_target(原型ID)->合成目标ID;	</comment>
+			<name>get_compose_target</name> 
+			<format>
+				get_compose_target({宝石ID}) -> {合成目标ID}
+			</format>
+		</function>
+		<function type = '0'>
+			<sql></sql>
+			<comment>宝石合成需要的个数：get_compose_num_by_level(Stone_level)->integer();	</comment>
+			<name>get_compose_num_by_level</name> 
+			<format>
+				get_compose_num_by_level(Stone_level)->
+					if 
+					Stone_level >= 7 -> 3;
+					true-> 4
+				end.
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID, 宝石级别, 合成消耗 FROM 宝石合成表$ </sql>
+			<comment>宝石合成消耗：get_compose_silver_by_level(Cfg_item_id,Stone_level)->integer;</comment>
+			<name>get_compose_silver_by_level</name> 
+			<format>
+				get_compose_silver_by_level({宝石ID},{宝石级别}) -> {合成消耗}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID,宝石级别, 转化费用 FROM 宝石合成表$ </sql>
+			<comment>宝石转化费用：get_convert_silver_by_level(Cfg_item_id,_Stone_level)->integer;</comment>
+			<name>get_convert_silver_by_level</name> 
+			<format>
+				get_convert_silver_by_level({宝石ID},{宝石级别}) -> {转化费用}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID, 雕刻材料 FROM 宝石合成表$ </sql>
+			<comment>宝石雕刻材料：get_carve_material(宝石ID)-> 材料;</comment>
+			<name>get_carve_material</name> 
+			<format>
+				get_carve_material({宝石ID}) -> {雕刻材料}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID,宝石级别, 雕刻费用 FROM 宝石合成表$ </sql>
+			<comment>宝石雕刻费用：get_carve_silver_by_level(Cfg_iten_id,_Stone_level)->integer;</comment>
+			<name>get_carve_silver_by_level</name> 
+			<format>
+				get_carve_silver_by_level({宝石ID},{宝石级别}) -> {雕刻费用}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 宝石ID,雕刻目标ID FROM 宝石合成表$ </sql>
+			<comment>get宝石雕刻目标ID：get_carve_target(Cfg_iten_id)->Target_id;</comment>
+			<name>get_carve_target</name> 
+			<format>
+				get_carve_target({宝石ID}) -> {雕刻目标ID}
+			</format>
+		</function>
+
+	</file>
+	
+	<file mod_name = 'data_xunxian' describe = '寻仙配置表' user_define = '-include("xunxian.hrl").'>
+		<function type = '1'>
+			<sql>SELECT 仙人位置, 几率, 物品 FROM 寻仙物品$ </sql>
+			<comment>寻仙物品：getItemList({仙人位置}, Odds) when Odds =&lt; {几率} -> 物品</comment>
+			<name>getItemList</name> 
+			<format>
+				getItemList({仙人位置}, Odds) when Odds =&lt; {几率} -> {物品}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 仙人位置, 消耗银币 FROM 寻仙概率$ </sql>
+			<comment>寻仙银币消耗：getSilverCost({仙人位置}) -> 消耗银币</comment>
+			<name>getSilverCost</name> 
+			<format>
+				getSilverCost({仙人位置}) -> {消耗银币}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 仙人位置, 前进概率 FROM 寻仙概率$ </sql>
+			<comment>寻仙银币消耗：getRate({仙人位置}) -> 前进概率</comment>
+			<name>getRate</name> 
+			<format>
+				getRate({仙人位置}) -> {前进概率}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_dazuo' describe = '打坐配置表' user_define = ''>
+		<function type = '1'>
+			<sql>SELECT 打坐时间段, 加成系数 FROM 打坐__活动时间加成$  </sql>
+			<comment>活动时间加成：get_daily_rate(NowTime) when NowTime =&lt; {打坐时间段} -> 加成系数</comment>
+			<name>get_daily_rate</name> 
+			<format>
+				get_daily_rate(NowTime) when NowTime =&lt; {打坐时间段} -> {加成系数}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 等级, 基础经验 FROM 打坐__经验表$ </sql>
+			<comment>根据等级获得基础经验：get_experience_by_level(等级) -> 基础经验</comment>
+			<name>get_experience_by_level</name> 
+			<format>
+				get_experience_by_level({等级}) -> {基础经验}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 	VIP类型, 加成系数 FROM 打坐__vip加成$   </sql>
+			<comment>活动时间加成：get_vip_rate(VIP类型) -> 加成系数</comment>
+			<name>get_vip_rate</name> 
+			<format>
+				get_vip_rate({VIP类型}) -> {加成系数}
+			</format>
+		</function>
+
+	</file>
+
+	<file mod_name = 'data_skill' describe = '武将技能信息表' user_define = '-include("role.hrl").'>
+		<function type = '3' parameter_index = '2'>
+			<sql>SELECT 技能ID, 属性ID FROM 技能配置表$ WHERE 技能类型=3 ORDER BY 属性ID</sql>
+			<comment>获取所有同一类技能属性id的普通技能</comment>
+			<name>all_normal_skill</name>
+			<format>
+				all_normal_skill({属性ID}) ->
+					[{技能ID}]
+			</format>
+		</function>
+		<function type = '2'>
+			<sql>SELECT 属性ID FROM 武将__技能属性分类表$</sql>
+			<comment>获取所有的技能属性分类id</comment>
+			<name>get_all_skill_class</name>
+			<format>
+				get_all_skill_class() ->
+					[{属性ID}]
+			</format>
+		</function>
+		<function type = '3' parameter_index = '1'>
+			<sql>SELECT 技能属性分类ID, 随机价值 FROM 武将__不同属性技能刷新概率表$</sql>
+			<comment>根据技能属性id获取其概率</comment>
+			<name>get_skill_class_rate</name>
+			<format>
+				get_skill_class_rate({技能属性分类ID}) -> {随机价值}
+			</format>
+		</function>
+		<function type = '3' parameter_index = '1'>
+			<sql>SELECT 技能ID, 随机价值 FROM 技能配置表$</sql>
+			<comment>根据技能id获取器刷出的概率</comment>
+			<name>get_skill_rate</name>
+			<format>
+				get_skill_rate({技能ID}) -> {随机价值}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 技能名称, 技能ID, 属性ID, 技能类型, 技能效果类型, 升级所需经验, 下一技能ID FROM 技能配置表$</sql>
+			<comment>根据技能id获取其详细信息</comment>
+			<name>skill_info</name>
+			<format>
+				%% {技能名称}
+				skill_info({技能ID}) ->
+					#skill_info{
+						mode_id       = {技能ID},
+						class_id      = {属性ID},
+						type          = {技能类型},
+						effect        = {技能效果类型},
+						level_up_exp  = {升级所需经验},
+						next_skill_id = {下一技能ID}
+					}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 刷新技能个数, 所需银币 FROM 武将__技能刷新消耗$</sql>
+			<comment>根据刷新技能的个数获取对应消耗的银币</comment>
+			<name>get_refresh_cost</name>
+			<format>
+				get_refresh_cost({刷新技能个数}) -> {所需银币}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 固定技能个数, 所需金币 FROM 武将__固定技能刷新消耗$</sql>
+			<comment>根据刷新技能的个数获取对应消耗的银币</comment>
+			<name>get_fixed_cost</name>
+			<format>
+				get_fixed_cost({固定技能个数}) -> {所需金币}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 平均天赋值,打开的技能孔数 FROM 武将__技能开孔表$ ORDER BY 平均天赋值 DESC</sql>
+			<comment>根据平均天赋值获取对应的技能孔数量</comment>
+			<name>get_skill_hole_nums</name>
+			<format>
+				get_skill_hole_nums(AverageTalent) when AverageTalent >= {平均天赋值} -> {打开的技能孔数}
+			</format>
+		</function>
+		<function type = '1' ignore = '3 != 0;4 != 0;5 != 0;6 != 0;7 != 0;8 != 0;9 != 0;10 != 0;11 != 0;12 != 0;13 != 0;14 != 0;15 != 0;16 != 0;17 != 0;18 != 0;19 != 0'>
+			<sql>SELECT 技能ID,力量加成,元神加成,体魄加成,敏捷加成,速度加成,暴击加成,闪避加成,格挡加成,命中加成,致命加成,幸运加成,反击加成,破甲加成,气血上限加成,物理防御加成,法术防御加成,物理攻击加成,魔法攻击加成 FROM 武将__被动技能属性加成表$</sql>
+			<comment>根据技能模型id获取其加成</comment>
+			<name>get_role_added_attri</name>
+			<format>
+				get_role_added_attri({技能ID}) ->
+					#role_update_attri{
+						gd_liliang    = {力量加成}@3,
+						gd_yuansheng  = {元神加成}@3@4,
+						gd_tipo       = {体魄加成}@4@5,
+						gd_minjie     = {敏捷加成}@5@6,
+						gd_speed      = {速度加成}@6@7,
+						gd_baoji      = {暴击加成}@7@8,
+						gd_shanbi     = {闪避加成}@8@9,
+						gd_gedang     = {格挡加成}@9@10,
+						gd_mingzhong  = {命中加成}@10@11,
+						gd_zhiming    = {致命加成}@11@12,
+						gd_xingyun    = {幸运加成}@12@13,
+						gd_fanji      = {反击加成}@13@14,
+						gd_pojia      = {破甲加成}@14@15,
+						gd_maxHp      = {气血上限加成}@15@16,
+						p_def         = {物理防御加成}@16@17,
+						m_def         = {法术防御加成}@17@18,
+						p_att         = {物理攻击加成}@18@19,
+						m_att         = {魔法攻击加成}@19
+					}
+			</format>
+		</function>
+	</file>
+	
+	<file mod_name = 'data_scene' describe = '场景配置数据' user_define = '-include("scene.hrl").'>
+		<function type = '2'>
+			<sql>SELECT 地图编号 FROM 场景__地图信息$ ORDER BY 地图编号</sql>
+			<comment>get all scene id list</comment>
+			<name>get_id_list</name>
+			<format>
+				get_id_list() ->
+					[{地图编号}]
+			</format>
+		</function>
+		<function type = '2'>
+			<sql>SELECT 地图编号 FROM 场景__地图信息$ ORDER BY 地图编号</sql>
+			<comment>获取玩家第一次进入游戏可以进入的地图</comment>
+			<name>get_init_access</name>
+			<format>
+				get_init_access() ->
+					[{地图编号}]
+			</format>
+		</function>
+		<function type = '2'>
+			<sql>SELECT 地图编号 FROM 场景__地图信息$ WHERE 地图类型=6 ORDER BY 地图编号</sql>
+			<comment>获取世界boss的地图，地图类型为?SCENE_ARENA2</comment>
+			<name>get_boss_scene</name>
+			<format>
+				get_boss_scene() ->
+					[{地图编号}]
+			</format>
+		</function>
+		<function type = '2'>
+			<sql>SELECT 地图编号 FROM 场景__地图信息$ WHERE 地图类型=3 ORDER BY 地图编号</sql>
+			<comment>获取所有的副本地图id</comment>
+			<name>get_all_dungeon</name>
+			<format>
+				get_all_dungeon() ->
+					[{地图编号}]
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 地图编号,地图类型,地图宽度,地图高度 FROM 场景__地图信息$ ORDER BY 地图编号</sql>
+			<comment>获取所有的副本地图id</comment>
+			<name>get</name>
+			<format>
+				get({地图编号}) ->
+					#scene{
+						id    = {地图编号},
+						type  = {地图类型},
+						row   = {地图高度},
+						clown = {地图宽度}
+					   }
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 地图编号,X,Y FROM 场景__地图信息$ WHERE X!=0 OR Y!=0 ORDER BY 地图编号</sql>
+			<comment>获取进入该地图的默认点</comment>
+			<name>get_default_xy</name>
+			<format>
+				get_default_xy({地图编号}) -> {{X}, {Y}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 地图编号,进入次数限制 FROM 场景__地图信息$ WHERE 地图类型=3</sql>
+			<comment>获取该地图的进入次数限制(0代表无限制)</comment>
+			<name>get_tickets</name>
+			<format>
+				get_tickets({地图编号}) -> {进入次数限制}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_mask' describe = '地图掩码数据' >
+		<function type = '1'>
+			<sql>SELECT 地图编号,REPLACE(地图数据,2,0) AS 地图数据1 FROM 场景__地图信息$ ORDER BY 地图编号</sql>
+			<comment></comment>
+			<name>get</name>
+			<format>
+				get({地图编号}) ->
+					"{地图数据1}"
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_jump_point' describe = '地图跳转点数据'>
+		<function type = '1'>
+			<sql>SELECT 地图编号,目的地图编号,出口点横坐标,出口点纵坐标 FROM 场景__跳转点$ WHERE 出口点横坐标 != 0 AND 出口点纵坐标 !=0 ORDER BY 地图编号</sql>
+			<comment>获取从哪个点跳转: get_from(FromScene, ToScene) -> PointInFromScene.</comment>
+			<name>get_from</name>
+			<format>
+				get_from({地图编号}, {目的地图编号}) -> {{出口点横坐标}, {出口点纵坐标}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 地图编号,目的地图编号,横坐标,纵坐标 FROM 场景__跳转点$ WHERE 出口点横坐标 != 0 AND 出口点纵坐标 !=0 ORDER BY 地图编号</sql>
+			<comment>获取跳转到目的地图的哪个点: get_to(FromScene, ToScene) -> PointInToScene.</comment>
+			<name>get_to</name>
+			<format>
+				get_to({地图编号}, {目的地图编号}) -> {{横坐标}, {纵坐标}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 源地图,目的地图,a.X AS X,a.Y AS Y FROM 场景__离开点$ a, 场景__地图信息$ b WHERE a.源地图=b.地图编号 AND b.地图类型=3</sql>
+			<comment>获取离开副本后的目的点</comment>
+			<name>get_leave_dungeon</name>
+			<format>
+				get_leave_dungeon({源地图}) -> {{目的地图}, {X}, {Y}}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_dungeon' describe = '副本配置数据' user_define = '-include("dungeon.hrl").'>
+		<function type = '3' parameter_index = '2'>
+			<sql>SELECT 唯一ID,场景ID FROM 场景怪配置$ a, 场景__地图信息$ b WHERE a.场景ID=b.地图编号 AND b.地图类型=3</sql>
+			<comment>获取副本地图中的所有进度</comment>
+			<name>get_all_process</name>
+			<format>
+				get_all_process({场景ID}) ->
+					[{唯一ID}]
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 唯一ID,X坐标,Y坐标,视野范围,怪物堆ID FROM 场景怪配置$ a, 场景__地图信息$ b WHERE a.场景ID=b.地图编号 AND b.地图类型=3</sql>
+			<comment>获取副本中进度的信息</comment>
+			<name>process</name>
+			<format>
+				process({唯一ID}) -> 
+					#dungeon_process{
+						id               = {唯一ID},
+						x                = {X坐标},
+						y                = {Y坐标},
+						scope            = {视野范围},
+						monster_group_id = {怪物堆ID}
+					}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 副本场景ID,购买次数,购买消耗 FROM 副本次数购买消耗$ ORDER BY 副本场景ID,购买次数</sql>
+			<comment>根据副本id和购买次数获取购买需要的金币</comment>
+			<name>get_buy_cost</name>
+			<format>
+				get_buy_cost({副本场景ID}, {购买次数}) -> {购买消耗}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 副本场景ID,MAX(购买次数) AS 次数 FROM 副本次数购买消耗$ GROUP BY 副本场景ID</sql>
+			<comment>根据副本id获取能购买的最大次数</comment>
+			<name>get_max_buy_times</name>
+			<format>
+				get_max_buy_times({副本场景ID}) -> {次数}
+			</format>
+		</function>
+		
+	</file>
+
+	<file mod_name = 'data_system' describe = '系统杂项配置数据'> 
+		<function type = '1'>
+			<sql>SELECT 编号,数据,描述 FROM 系统杂项配置数据$ ORDER BY 编号</sql>
+			<comment></comment>
+			<name>get</name>
+			<format>
+				%% {描述}
+				get({编号}) -> {数据}
+			</format>
+		</function>
+	</file>
+    <file mod_name='data_task' describe='任务数据' user_define='-include("common.hrl"). -include("task.hrl").'>
+        <function type='1'>
+            <sql>
+                SELECT 
+                    任务编号, 
+                    名称, 
+                    大类型, 
+                    任务类型, 
+                    (SELECT GROUP_CONCAT('#task_tip{key=', '{', 任务配置$.任务类型, ',', 目标ID, '}', ',need=', 目标数量, ',finish=0', '}') 
+                     FROM 任务目标表$ 
+                     WHERE 任务目标表$.任务编号 = 任务配置$.任务编号) AS 任务目标, 
+                    前置任务编号, 
+                    角色等级, 
+                    CONCAT(
+                        IF(经验 &lt;= 0, 
+                            '', 
+                            CONCAT('#task_reward{type=3,value=', 经验, '},')
+                        ),
+                        IF(物品 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=4,value=', 物品, '},')
+                        ),
+                        IF(军功 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=7,value=', 军功, '},')
+                        ),
+                        IF(师门积分 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=8,value=', 师门积分, '},')
+                        ),
+                        IF(帮派积分 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=9,value=', 帮派积分, '},')
+                        ),
+                        IF(开启地图ID &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=6,value=', 开启地图ID, '},')
+                        ),
+                        'place_holder'
+                    ) AS 任务奖励,
+                    接受任务NPC, 
+                    提交任务NPC 
+                FROM 任务配置$ 
+                ORDER BY 任务编号;
+            </sql>  
+            <sql_para>任务编号,名称,大类型,任务类型,任务目标,前置任务编号,角色等级,任务奖励,接受任务NPC,提交任务NPC</sql_para>              
+            <comment>获取任务配置</comment>
+            <name>get</name>
+			<format>
+				get({任务编号}) ->
+					#task{
+						id         = {任务编号},
+						name       = "{名称}",
+						type       = {大类型},
+						req_type   = {任务类型},
+						difficulty = 0,
+						tips       = [{任务目标}],
+						prev_id    = {前置任务编号},
+						req_level  = {角色等级},
+						reward     = [{任务奖励}],
+						npc1       = {接受任务NPC},
+						npc2       = {提交任务NPC},
+						rec_reward = []
+					}
+			</format>
+        </function>
+        <function type='1'>
+            <sql>
+                SELECT GROUP_CONCAT(DISTINCT 类型) FROM 循环任务随机列表$;
+            </sql>
+            <sql_para>循环任务类型列表</sql_para>
+            <comment>循环任务类型列表</comment>
+            <name>get_cyclic_type_list</name>
+			<format>
+				get_cyclic_type_list() -> [{循环任务类型列表}]
+			</format>
+        </function>
+        <function type='1'>
+            <sql>SELECT 类型,玩家等级,随机列表 FROM 循环任务随机列表$;</sql>
+            <sql_para>类型,玩家等级,随机列表</sql_para>
+            <comment>循环任务随机列表</comment>
+            <name>get_cyclic_task_list</name>
+			<format>
+				get_cyclic_task_list({类型}, {玩家等级}) ->
+					{随机列表}
+			</format>
+        </function>
+        <function type='1'>
+            <sql>
+                SELECT 
+                    循环任务类型, 
+                    玩家等级, 
+                    环数, 
+                    CONCAT(
+                        IF(经验 &lt;= 0, 
+                            '', 
+                            CONCAT('#task_reward{type=3,value=', 经验, '},')
+                        ),
+                        IF(物品 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=4,value=', 物品, '},')
+                        ),
+                        IF(军功 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=7,value=', 军功, '},')
+                        ),
+                        IF(师门积分 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=8,value=', 师门积分, '},')
+                        ),
+                        IF(帮派积分 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=9,value=', 帮派积分, '},')
+                        ),
+                        IF(金钱 &lt;= 0,
+                            '',
+                            CONCAT('#task_reward{type=11,value=', 金钱, '},')
+                        ),
+                        'place_holder'
+                    ) AS 任务奖励
+                FROM 循环任务奖励配置$;
+            </sql>
+            <sql_para>循环任务类型,玩家等级,环数,任务奖励</sql_para>
+            <comment>循环任务随机列表</comment>
+            <name>get_cyclic_task_reward</name>
+			<format>
+				get_cyclic_task_reward({循环任务类型}, {玩家等级}, {环数}) ->
+					[{任务奖励}]
+			</format>
+        </function>
+    </file>
+
+    <file mod_name = 'data_official' describe = '官职器魂配置数据' user_define = '-include("role.hrl").'>
+		<function type = '1'>
+			<sql>SELECT 官职ID,军功需求 FROM 官职表$ ORDER BY 官职ID DESC</sql>
+			<comment>根据军功（即声望）获取其官职</comment>
+			<name>get_officail_position</name>
+			<format>
+				get_officail_position(P) when P >= {军功需求} -> {官职ID}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 官职ID,俸禄 FROM 官职表$ ORDER BY 官职ID</sql>
+			<comment>根据军功（即声望）获取其官职</comment>
+			<name>get_fenglu</name>
+			<format>
+				get_fenglu({官职ID}) -> {俸禄}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂等级,修炼时间 FROM 器魂__等级修炼$ GROUP BY 器魂等级</sql>
+			<comment>根据当前器魂等级获取修炼的时间</comment>
+			<name>get_leveling_time</name>
+			<format>
+				get_leveling_time({器魂等级}) -> {修炼时间}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂等级,银币消耗 FROM 器魂__等级修炼$ GROUP BY 器魂等级</sql>
+			<comment>根据当前器魂等级获取修炼器魂的银币消耗</comment>
+			<name>get_leveling_cost</name>
+			<format>
+				get_leveling_cost({器魂等级}) -> {银币消耗}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂等级,瞬时完成需求元宝 FROM 器魂__等级修炼$ GROUP BY 器魂等级</sql>
+			<comment>立刻完成修炼器魂的元宝消耗</comment>
+			<name>get_finish_right_now_cost</name>
+			<format>
+				get_finish_right_now_cost({器魂等级}) -> {瞬时完成需求元宝}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂品阶,军功消耗,每次点击消耗元宝 FROM 器魂__品阶修炼$ GROUP BY 器魂品阶</sql>
+			<comment>根据品阶等级获取提升品阶的军功、元宝消耗</comment>
+			<name>get_pinjie_up_cost</name>
+			<format>
+				get_pinjie_up_cost({器魂品阶}) -> {{军功消耗}, {每次点击消耗元宝}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 神器阶段ID,所有器魂等级需求,所有器魂品阶需求,神器阶段名称 FROM 器魂__阶段属性$ ORDER BY 神器阶段ID DESC</sql>
+			<comment>获取神器阶段</comment>
+			<name>get_shenqi_stage</name>
+			<format>
+				%% {神器阶段名称}
+				get_shenqi_stage(QinhunLv, PinjieLv) when QinhunLv >= {所有器魂等级需求} andalso PinjieLv >= {所有器魂品阶需求} -> {神器阶段ID}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂ID,器魂等级,增加属性,描述,器魂名称 FROM 器魂__等级修炼$</sql>
+			<comment>根据器魂id和它的等级获取给武将属性的加成</comment>
+			<name>get_qihun_added_attri</name>
+			<format>
+				%% 器魂：{器魂名称}{器魂等级}级，{描述}
+				get_qihun_added_attri({器魂ID}, {器魂等级}) -> {增加属性}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 器魂品阶,器魂ID,增加属性,描述,器魂名称 FROM 器魂__品阶修炼$</sql>
+			<comment>根据品阶所对应的器魂id和品阶等级获取给武将的属性加成</comment>
+			<name>get_pinjie_added_attri</name>
+			<format>
+				%% 器魂：{器魂名称}品阶{器魂品阶}，{描述}
+				get_pinjie_added_attri({器魂ID}, {器魂品阶}) -> {增加属性}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 神器阶段ID,神器阶段名称,气血,物理攻击,法术攻击,物理防御,法术防御,命中,闪避,躲避暴击,速度,暴击 FROM 器魂__阶段属性$</sql>
+			<comment>根据神器阶段id值获取给武将属性的加成</comment>
+			<name>get_shenqi_stage_added_attri</name>
+			<format>
+				get_shenqi_stage_added_attri({神器阶段ID}) ->
+					#role_update_attri{
+						gd_currentHp  = {气血},
+						gd_maxHp      = {气血},
+						p_def         = {物理防御},
+						m_def         = {法术防御},
+						p_att         = {物理攻击},
+						m_att         = {法术攻击},
+						gd_mingzhong  = {命中},
+						gd_shanbi     = {闪避},
+						gd_xingyun    = {躲避暴击},
+						gd_speed      = {速度},
+						gd_baoji      = {暴击}
+					}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT MAX(器魂等级) AS maxLv FROM 器魂__等级修炼$</sql>
+			<comment>获取最大的器魂等级</comment>
+			<name>get_max_qihun_level</name>
+			<format>
+				get_max_qihun_level() -> {maxLv}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_exp' describe = '武将经验配置表'>
+		<function type = '1'>
+			<sql>SELECT 等级,经验 FROM 武将__经验表$</sql>
+			<comment>获取对应等级的经验</comment>
+			<name>get</name>
+			<format>
+				get({等级}) -> {经验}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 等级,升级到该级的总经验 FROM 武将__经验表$</sql>
+			<comment>获取对应等级所需的总经验</comment>
+			<name>get_total</name>
+			<format>
+				get_total({等级}) -> {升级到该级的总经验}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_fengdi' describe = '封地（包括种植等系统）数据'>
+		<function type = '1'>
+			<sql>SELECT 土地ID,官职需求（ID）,VIP类型ID FROM 种植__土地开启$</sql>
+			<comment>根据土地id获取其开启的条件：{官职条件, Vip条件}</comment>
+			<name>get_open_land_require</name>
+			<format>
+				get_open_land_require({土地ID}) -> {{官职需求（ID）}, {VIP类型ID}}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 土地ID,元宝需求 FROM 种植__土地开启$</sql>
+			<comment>根据土地id获取其开启所需的金币</comment>
+			<name>get_open_land_cost</name>
+			<format>
+				get_open_land_cost({土地ID}) -> {元宝需求}
+			</format>
+		</function>
+		<function type = '1'>
+			<sql>SELECT 种子品质ID,官职ID,经验种子收益,银币种子收益 FROM 种植__种子收益$</sql>
+			<comment>get_seed_result(种子类型, 官职id, 种子品质)-> 银币或经验</comment>
+			<name>get_seed_result</name>
+			<format>
+				get_seed_result(1, {官职ID}, {种子品质ID}) -> {经验种子收益};
+				get_seed_result(2, {官职ID}, {种子品质ID}) -> {银币种子收益}
+			</format>
+		</function>
+	</file>
+
+	<file mod_name = 'data_relationship' describe = '好友配置数据' user_define = '-include("common.hrl").'>
+		<function type = '0'>
+			<sql></sql>
+			<comment></comment>
+			<name>reach_pray_max</name>
+			<format>
+				reach_pray_max(Count,Level)->
+					Count >= 10+(Level div 10).
+
+				reach_prayed_max(Count,Level)->
+					Count >= 10+(Level div 10).
+				max_pray_num(Level) ->
+						10+(Level div 10).
+
+					-spec max_prayed_num(integer()) -> integer().
+					max_prayed_num(Level)->
+						10+(Level div 10).
+
+				%% GZ0583(彭林) 14:41:37
+				%% 坚荣兄 好友祝福银币和历练奖励的公式做了相应变化 人数增长的不变
+				%% 每次祝福和被祝福的银币：
+				%% 银币=INT(2000+（1-相互之间的友之圣痕等级差/20）*友之圣痕等级*150)
+				%% 每次祝福和被祝福的历练：
+				%% 历练= INT(2000+（1-相互之间的友之圣痕等级差/20）*友之圣痕等级*100)
+
+
+				get(_Familiar,Holy1,Holy2,FriendHoly)->
+					Money = 2000+(1-abs(Holy1-Holy2)/20) * FriendHoly * 150,
+					Exp   = 2000+(1-abs(Holy1-Holy2)/20) * FriendHoly * 100,
+					{round(Money),round(Exp)}.
+					
+
+				%% %%we should use code to generate following info.
+				%% get_familiar_money_weigth(X)->
+				%% 	if
+				%% 		X &lt; 499 -> 0;
+				%% 		X &lt; 999 -> 0.05;
+				%% 		X &lt; 1999 -> 0.1;
+				%% 		X &lt; 2999 -> 0.15;
+				%% 		X &lt; 3999 -> 0.2;
+				%% 		true -> 0.25
+				%% 	end.
+				%% 		
+				%% %% 
+				%% %% money_base(1)-> 100;
+				%% %% money_base(2)-> 200;
+				%% %% money_base(_Default) -> 0.
+				%% 
+				%% get_familiar_exp_weigth(X)->
+				%% 	if
+				%% 		X&lt;499 -> 0;
+				%% 		X&lt;999 -> 0.05;
+				%% 		X&lt;1999 -> 0.1;
+				%% 		X&lt;2999 -> 0.15;
+				%% 		X&lt;3999 -> 0.2;
+				%% 		true -> 0.25
+				%% 	end.
+				%% %% 
+				%% %% exp_base(1)-> 100;
+				%% %% exp_base(2)-> 200;
+				%% %% exp_base(_Default)-> 0.
+
+
+				-spec get_max_send(Holy_level :: integer())->  integer().
+				get_max_send(Friend_holy_level) ->
+				%% 可祝福人数=10+int（友之圣痕/2）
+					10+trunc(Friend_holy_level/2). 
+					
+
+				-spec get_max_recv(Holy_level :: integer())->  integer().
+				get_max_recv(Friend_holy_level) ->
+				%% GZ0583(彭林) 16:51:43
+				%% 注：在30级以前，圣痕功能还没开启的时候， 默认主圣痕及友之圣痕等级为0.
+				%% GZ0583(彭林) 16:51:55
+				%% 可祝福数量=10+int（友之圣痕/2）
+					10+trunc(Friend_holy_level/2).
+
+				-spec get_max_find_friend() -> integer().
+				get_max_find_friend() ->
+					10.
+
+
+				%%GZ0807(方弘瑛) 11:37:23
+				%%空之圣痕16级开
+				get_min_level()->
+					10.
+
+				get_recommend_num()->
+					20.
+
+				get_item_drop_addition(Familiar) ->
+				%% 亲密度效果说明
+				%% 亲密度：1-49     陌路      掉率加成：1% 
+				%% 亲密度：50-99    相知      掉率加成：2% 
+				%% 亲密度：100-199  密友      掉率加成：5%
+				%% 亲密度：200-299  知己      掉率加成：8% 
+				%% 亲密度：300-399  知音      掉率加成：10% 
+				%% 亲密度：400-499  莫逆之交  掉率加成：15% 
+					if
+						Familiar == 0 -> 1;
+						Familiar &lt; 50 -> 1.01;
+						Familiar &lt; 100 -> 1.02;
+						Familiar &lt; 200 -> 1.05;
+						Familiar &lt; 300 -> 1.08;
+						Familiar &lt; 400 -> 1.1;
+						true->1.15
+				%% 		Familiar &lt; 500 -> 1.15
+					end.
+
+				get_recommend_extend_factor() -> 1.
+
+				get_friend_page_size()->9.
+			</format>
+		</function>
+
+		<function type = '1'>
+			<sql>SELECT 等级,银币 FROM 好友祝福$</sql>
+			<comment>获取同等级银币</comment>
+			<name>get_level_silver</name>
+			<format>
+				get_level_silver({等级}) -> {银币}
+			</format>
+		</function>
+
+		<function type = '1'>
+			<sql>SELECT 等级,经验 FROM 好友祝福$</sql>
+			<comment>获取同等级经验</comment>
+			<name>get_level_exp</name>
+			<format>
+				get_level_exp({等级}) -> {经验}
+			</format>
+		</function>
+		
+	</file>
+</document>
+
+
+	
