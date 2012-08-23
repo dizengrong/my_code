@@ -1,0 +1,79 @@
+# GUIBUILDER FILE Build 146
+# Created: 2012-08-23 11:22:27 by GUI Builder Build 146
+language tkinter 8.4
+widget {Tk frame} f {
+	geometry min_column {256 818}
+	geometry min_row {40 645}
+	geometry pad_column {0 0}
+	geometry pad_row {0 0}
+	geometry resize_column {0 0}
+	geometry resize_row {0 0}
+	geometry weight_column {0 0}
+	geometry weight_row {0 0}
+	data GROUP Tk
+	data ID {}
+	data MASTER {}
+	data TYPE {Tk frame}
+	data level 0
+}
+widget {Tk frame} _frame_1 {
+	geometry -column 2
+	geometry -columnspan 1
+	geometry -row 2
+	geometry -rowspan 1
+	geometry -sticky news
+	geometry min_column 40
+	geometry min_row 40
+	geometry pad_column 0
+	geometry pad_row 0
+	geometry resize_column 0
+	geometry resize_row 0
+	geometry weight_column 0
+	geometry weight_row 0
+	data GROUP Tk
+	data ID _frame_1
+	data MASTER {}
+	data TYPE {Tk frame}
+	data level 1
+}
+widget {Tk label} _label_1 {
+	configure -text {server list}
+	geometry -column 1
+	geometry -columnspan 1
+	geometry -row 1
+	geometry -rowspan 1
+	geometry -sticky {}
+	data GROUP Tk
+	data ID _label_1
+	data MASTER {}
+	data TYPE {Tk label}
+}
+widget {Tk listbox} _listbox_1 {
+	configure -height 0
+	configure -selectmode single
+	configure -width 0
+	configure -yscrollcommand scrollbar.set
+	geometry -column 1
+	geometry -columnspan 1
+	geometry -row 2
+	geometry -rowspan 1
+	geometry -sticky news
+	data GROUP Tk
+	data ID _listbox_1
+	data MASTER {}
+	data TYPE {Tk listbox}
+}
+widget {Tk canvas} _canvas_1 {
+	configure -height 0
+	configure -width 0
+	geometry -column 2
+	geometry -columnspan 1
+	geometry -row 1
+	geometry -rowspan 1
+	geometry -sticky news
+	data GROUP Tk
+	data ID _canvas_1
+	data MASTER {}
+	data TYPE {Tk canvas}
+}
+
