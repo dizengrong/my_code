@@ -1,6 +1,7 @@
 from Tkinter import *
 import load_cfg
 import ssh_manager
+from shell_text import ShellText
 
 class StatusBar(Frame):
     def __init__(self, master):
@@ -41,9 +42,8 @@ class App:
 
         self.text_scrollbar = Scrollbar(self.master)
 
-        self.text    = Text(self.master, height = 25, width = 80, 
-                            # xscrollcommand = self.scrollbar.set,
-                            yscrollcommand = self.text_scrollbar.set)
+        self.text    = ShellText(self.master, 'shell: ', height = 25, width = 80, 
+                                 yscrollcommand = self.text_scrollbar.set)
         self.text_scrollbar.config(command=self.text.yview)
 
         self.list_scrollbar = Scrollbar(self.master)
