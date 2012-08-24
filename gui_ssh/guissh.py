@@ -1,5 +1,6 @@
 from Tkinter import *
 import load_cfg
+import ssh_manager
 
 class StatusBar(Frame):
     def __init__(self, master):
@@ -17,6 +18,7 @@ class StatusBar(Frame):
 
 class App:
     def __init__(self, master):
+        self.ssh_manager = ssh_manager.SSH()
         self.master = master
         self.frame = Frame(master)
         self.init_gui()
@@ -76,8 +78,10 @@ class App:
             print("the first!")
 
     def cmd_connect(self):
-        server = self.servers[int(self.listbox.curselection()[0])]
-        print("connect button clicked, server: %s" % server)
+        # server = self.servers[int(self.listbox.curselection()[0])]
+        # self.ssh_manager.connect(server['ip'], 'root', server['password'])
+        self.text.insert(INSERT, '=insert text=')
+        # print("connect button clicked, server: %s" % server)
 
 
     def cmd_connect_all(self):
