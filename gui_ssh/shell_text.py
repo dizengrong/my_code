@@ -5,6 +5,7 @@ class ShellText(Text):
         Text.__init__(self, master)
         self.bind('<Key>', self.insert_char)
         self.bind('<Return>', self.insert_return)
+        self.bind('<Button-1>', self.left_mouse_click)
         self.set_prefix(prefix)
 
     def get_cmd():
@@ -22,4 +23,8 @@ class ShellText(Text):
     def insert_return(self, event):
     	self.insert(END, '\n' + self.prefix)
     	return 'break'
+
+    def left_mouse_click(self, event):
+    	print('left mouse click, x: %d, y: %d' % (event.x, event.y))
+    	# return 'break'	
 
