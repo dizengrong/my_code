@@ -1,7 +1,7 @@
 import sublime, sublime_plugin
 import re, time, threading, os
 
-def find_pre_word(word_list, word):
+def FindPreWord(word_list, word):
 	pre_word = ""
 	for w in word_list:
 		if w == word:
@@ -63,56 +63,33 @@ def get_line(full_path, mod, function):
 		line_num += 1
 		# print "line_num: %d, line: %s" % (line_num, line)
 		try:
-			# line = line.encode("ascii")
-			line = line.strip()
-			if line[0:len(function)] == function and line[-2::] == "->":
+			m = re.match(function + "\(.*\)\s{0,}->.*", line.strip())
+			if m is not None:
 				return line_num
 		except:
 			continue
 	else:
-		print "reach this?!"
+		print "not find"
 
 
 class ApiJump(sublime_plugin.TextCommand):
 	def run(self, edit):
 		region = self.view.sel()[0]
+
 		function = self.view.substr(region)
-		line_str = self.view.substr(self.view.line(region.a))
-		# 如果是调用其他模块，则格式为：module:function()
-		if ':' + function in line_str:
+		line = self.view.substr(self.view.line(region.a))
+
+		if ':' + function in line:
 			word_list = re.split(r'\W+', line)
-			Mod = find_pre_word(word_list, function)
+			Mod = FindPreWord(word_list, function)
+			full_path = get_path(Mod)
 		else:
-			Mod = os.path.basename(self.view.file_name())[:-4]
-		# 向erlang发消息获取该方法所在文件的行号
+			full_path = self.view.file_name()
+			Mod = os.path.basename(full_path)[:-4]
 
-		if function == None:
-			region = self.view.sel()[0]
-
-			function = self.view.substr(region)
-			line = self.view.substr(self.view.line(region.a))
-
-			if ':' + function in line:
-				word_list = re.split(r'\W+', line)
-				Mod = find_pre_word(word_list, function)
-				full_path = get_path(Mod)
-			else:
-				full_path = self.view.file_name()
-				Mod = os.path.basename(full_path)[:-4]
-
-			line = get_line(full_path, Mod, function)
-			if line:
-				filename = "%s:%d" % (full_path, line)
-				sublime.active_window().open_file(filename, sublime.ENCODED_POSITION)
-		else:
-			# print "function:%s, type: %s" % (function, type(function))
-			region_list = self.view.find_all(function)
-			fun_def_region = find_fun_def(self.view, region_list, function)
-			line = self.view.rowcol(fun_def_region.a)
-			full_path = "%s:%d" % (full_path, line)
-			if fun_def_region != False:
-				self.view.show(fun_def_region, True)
-
-
+		line = get_line(full_path, Mod, function)
+		if line:
+			filename = "%s:%d" % (full_path, line)
+			sublime.active_window().open_file(filename, sublime.ENCODED_POSITION)
 
 
