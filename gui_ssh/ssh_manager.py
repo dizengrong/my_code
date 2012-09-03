@@ -14,7 +14,7 @@ class SSH:
             ssh.connect(ip, username=username, password=password)
             self.connections[ip] = ssh
             return True
-    def exec_command(ip, cmd):
+    def exec_command(self, ip, cmd):
         ssh =  self.connections[ip]
         ssh_stdin, ssh_stdout, ssh_stderr = ssh.exec_command(cmd)
         return ssh_stdout.read()

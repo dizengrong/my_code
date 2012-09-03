@@ -23,6 +23,7 @@ class App:
         self.master = master
         self.frame = Frame(master)
         self.init_gui()
+        self.text.set_cmd_callback(self.exec_cmd)
         self.servers = load_cfg.load_file()
         for server in self.servers:
             self.listbox.insert(END, server['ip'])
@@ -78,9 +79,13 @@ class App:
             print("the first!")
 
     def cmd_connect(self):
-        # server = self.servers[int(self.listbox.curselection()[0])]
-        # self.ssh_manager.connect(server['ip'], 'root', server['password'])
-        self.text.insert(INSERT, '=insert text=')
+        server = self.servers[int(self.listbox.curselection()[0])]
+        ret = self.ssh_manager.connect(server['ip'], 'root', server['password'])
+        if ret:
+            self.statusbar.set('connect to %s sucessfully', server['ip'])
+        else:
+            self.statusbar.set('connect to %s failed...', server['ip'])
+
         # print("connect button clicked, server: %s" % server)
 
 
@@ -103,7 +108,11 @@ class App:
         pass    
 
     def cmd_status_all(self):
-        pass            
+        pass
+
+    def exec_cmd(self, cmd):
+        server = self.servers[int(self.listbox.curselection()[0])]
+        return self.ssh_manager.exec_command(server['ip'], cmd)
         
 
 
