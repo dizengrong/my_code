@@ -1,0 +1,1899 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"Err",
+				"Error1"
+			],
+			[
+				"Tap",
+				"TargetPos"
+			],
+			[
+				"Targe",
+				"TargetTY"
+			],
+			[
+				"Dest",
+				"DestType"
+			],
+			[
+				"Des",
+				"DestID"
+			],
+			[
+				"type",
+				"typeid"
+			],
+			[
+				"dir",
+				"dirty_write"
+			],
+			[
+				"ma",
+				"max_magic"
+			],
+			[
+				"add_buf",
+				"add_buff_to_actor"
+			],
+			[
+				"role",
+				"role_id"
+			],
+			[
+				"lef",
+				"left_free_hunqi_refine_times"
+			],
+			[
+				"add_bu",
+				"add_buff_to_actor"
+			],
+			[
+				"Re",
+				"Rec"
+			],
+			[
+				"RELIVE_TYP",
+				"RELIVE_TYPE_SITU"
+			],
+			[
+				"comm",
+				"common_tool"
+			],
+			[
+				"is_",
+				"is_npc_has_this_question"
+			],
+			[
+				"#",
+				"#p_hq_skl"
+			],
+			[
+				"Att",
+				"Attrs"
+			],
+			[
+				"map",
+				"mapID"
+			],
+			[
+				"Add",
+				"Add2"
+			],
+			[
+				"Skil",
+				"SkillID"
+			],
+			[
+				"Rol",
+				"RoleLv"
+			],
+			[
+				"arr",
+				"array"
+			],
+			[
+				"aCT",
+				"ActorBuff"
+			],
+			[
+				"Cat",
+				"category"
+			],
+			[
+				"Attr",
+				"AttrCode"
+			],
+			[
+				"sen",
+				"send_skill_list_to_client"
+			],
+			[
+				"R",
+				"RoleID"
+			],
+			[
+				"Buff",
+				"BuffID"
+			],
+			[
+				"mod_ro",
+				"mod_role_score"
+			],
+			[
+				"Rec",
+				"Rec2"
+			],
+			[
+				"REc",
+				"Rec2"
+			],
+			[
+				"Rolst",
+				"RoleState"
+			],
+			[
+				"de",
+				"default"
+			],
+			[
+				"get_role",
+				"get_role_hunqi_list"
+			],
+			[
+				"typ",
+				"typeid"
+			],
+			[
+				"Equ",
+				"EquipRec"
+			],
+			[
+				"gema",
+				"get_conf_max_shenghua_lv"
+			],
+			[
+				"cfg",
+				"cfg_super_vip"
+			],
+			[
+				"ty",
+				"typeid"
+			],
+			[
+				"lis",
+				"lists"
+			],
+			[
+				"mod_role",
+				"mod_role_attr"
+			],
+			[
+				"Go",
+				"GoodsID"
+			],
+			[
+				"Fos",
+				"FosterRec#p_slot_foster"
+			],
+			[
+				"rolest",
+				"role_state"
+			],
+			[
+				"Rols",
+				"RoleState"
+			],
+			[
+				"rein",
+				"reinforce_lv"
+			],
+			[
+				"get_fo",
+				"get_foster_add_attr"
+			],
+			[
+				"FSO",
+				"FOSTER_TYPE_SHENGHUA"
+			],
+			[
+				"reinf",
+				"reinforce_attr"
+			],
+			[
+				"Ratt",
+				"RoleAttr"
+			],
+			[
+				"data",
+				"datas"
+			],
+			[
+				"common",
+				"common_misc"
+			],
+			[
+				"attr",
+				"attr_str"
+			],
+			[
+				"#p_",
+				"#p_role_fight"
+			],
+			[
+				"in",
+				"integer()"
+			],
+			[
+				"Ski",
+				"SkillID"
+			],
+			[
+				"MOU",
+				"MODULE"
+			],
+			[
+				"modul",
+				"MODULE"
+			],
+			[
+				"get_npc",
+				"get_npc_question"
+			],
+			[
+				"Map",
+				"_MapId"
+			],
+			[
+				"rot",
+				"random_txty"
+			],
+			[
+				"Bo",
+				"#m_broadcast_show_off_toc"
+			],
+			[
+				"com",
+				"common_tool"
+			],
+			[
+				"get_ro",
+				"get_role_name"
+			],
+			[
+				"mod_rol",
+				"mod_role_attr"
+			],
+			[
+				"Tx",
+				"Text"
+			],
+			[
+				"np",
+				"npc_manager"
+			],
+			[
+				"mgee",
+				"mgeem_map"
+			],
+			[
+				"re",
+				"refresh_npc"
+			],
+			[
+				"Room",
+				"RoomId"
+			],
+			[
+				"npc",
+				"npc_id"
+			],
+			[
+				"isch",
+				"is_checked_ip"
+			],
+			[
+				"Ac",
+				"ActorID"
+			],
+			[
+				"Rate",
+				"AddRate"
+			],
+			[
+				"Y",
+				"Y"
+			],
+			[
+				"ac",
+				"actor_id"
+			],
+			[
+				"rec",
+				"recalc_yaoshou_attr"
+			],
+			[
+				"BUFF",
+				"BUFF_TO_ENEMY"
+			],
+			[
+				"Addb",
+				"AddBuffToWho"
+			],
+			[
+				"mod",
+				"mod_yaoshou"
+			],
+			[
+				"set_acy",
+				"set_actor_yaoshou_list"
+			],
+			[
+				"Yaoshin",
+				"YaoshouInfo"
+			],
+			[
+				"ski",
+				"skills"
+			],
+			[
+				"Yao",
+				"YaoshouInfo"
+			],
+			[
+				"TYP",
+				"TYPE_ROLE"
+			],
+			[
+				"get_ac",
+				"get_actor_yaoshou_list"
+			],
+			[
+				"SE",
+				"SecAttr"
+			],
+			[
+				"sec",
+				"sec_attr"
+			],
+			[
+				"Sec",
+				"SecAttr2"
+			],
+			[
+				"cal",
+				"calc_yaoshou_owner_damage"
+			],
+			[
+				"skill",
+				"skills"
+			],
+			[
+				"New",
+				"NewLv"
+			],
+			[
+				"get_",
+				"get_silent_resist_rate"
+			],
+			[
+				"r",
+				"random"
+			],
+			[
+				"Eff",
+				"EffectType"
+			],
+			[
+				"Reduce",
+				"ReduceDamage"
+			],
+			[
+				"Fla",
+				"FlagParam"
+			],
+			[
+				"Role",
+				"RoleYaoshouInfoList"
+			],
+			[
+				"set_",
+				"set_skill_reduce_rate"
+			],
+			[
+				"get_c",
+				"get_actor_yaoshou_list"
+			],
+			[
+				"Yaos",
+				"YaoshouInfoList"
+			],
+			[
+				"maxh",
+				"max_hp"
+			],
+			[
+				"max",
+				"max_hp"
+			],
+			[
+				"Yaosho",
+				"YaoshouInfoList"
+			],
+			[
+				"SINGFBTY",
+				"SINGLE_FB_TY12"
+			],
+			[
+				"Acc",
+				"Acc2"
+			],
+			[
+				"Equip",
+				"EquipGoods"
+			],
+			[
+				"dire",
+				"dirty_write"
+			],
+			[
+				"dirty_a",
+				"dirty_match_all"
+			],
+			[
+				"Red",
+				"NewReduceRate"
+			],
+			[
+				"Attack",
+				"YaoshouAttackRate"
+			],
+			[
+				"TY",
+				"TYPE_PET"
+			],
+			[
+				"Ylis",
+				"YaoshouInfoList"
+			],
+			[
+				"Yaosh",
+				"YaoshouTypeId"
+			],
+			[
+				"Ya",
+				"YaoshouInfoList"
+			],
+			[
+				"is_in",
+				"is_skill_in_cd"
+			],
+			[
+				"Bu",
+				"BuffId"
+			],
+			[
+				"Hp",
+				"HpHurtRate"
+			],
+			[
+				"hp",
+				"HpHurtRate"
+			],
+			[
+				"get",
+				"get_yaoshou_id"
+			],
+			[
+				"Perio",
+				"Period"
+			],
+			[
+				"upd",
+				"update_yaoshou_help"
+			],
+			[
+				"rol",
+				"role_on_list"
+			],
+			[
+				"All",
+				"AllOnList"
+			],
+			[
+				"li",
+				"list_to_integer"
+			],
+			[
+				"und",
+				"undefined"
+			],
+			[
+				"send",
+				"send_skill_points_to_client"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "mysite/urls.py",
+			"settings":
+			{
+				"buffer_size": 756,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "mysite/settings.py",
+			"settings":
+			{
+				"buffer_size": 2652,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "my_app/static/index.html",
+			"settings":
+			{
+				"buffer_size": 93,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "my_app/static/style.css",
+			"settings":
+			{
+				"buffer_size": 84,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "my_app/views.py",
+			"settings":
+			{
+				"buffer_size": 63,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "sni",
+		"selected_items":
+		[
+			[
+				"sni",
+				"Snippet: html"
+			],
+			[
+				"pakcin",
+				"Package Control: Install Package"
+			],
+			[
+				"pain",
+				"Package Control: Install Package"
+			],
+			[
+				"sse",
+				"Set Syntax: Erlang"
+			],
+			[
+				"pack",
+				"Package Control: Advanced Install Package"
+			],
+			[
+				"Package Control: ",
+				"Package Control: Disable Package"
+			],
+			[
+				"pakd",
+				"Package Control: Disable Package"
+			],
+			[
+				"ssc",
+				"Set Syntax: C++"
+			],
+			[
+				"ssx",
+				"Set Syntax: XML"
+			],
+			[
+				"SSE",
+				"Set Syntax: Erlang"
+			],
+			[
+				"spy",
+				"Set Syntax: Python"
+			],
+			[
+				"se",
+				"Set Syntax: Erlang"
+			],
+			[
+				"ssh",
+				"Set Syntax: HTML"
+			],
+			[
+				"sss",
+				"Set Syntax: Java Server Page (JSP)"
+			],
+			[
+				"cc",
+				"Convert Case: Lower Case"
+			],
+			[
+				"SSEB",
+				"Set Syntax: Batch File"
+			],
+			[
+				"ssp",
+				"Set Syntax: Python"
+			],
+			[
+				"pakc",
+				"Package Control: Install Package"
+			],
+			[
+				"mak",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"make",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"sseb",
+				"Set Syntax: Batch File"
+			],
+			[
+				"ssse",
+				"Set Syntax: Java Server Page (JSP)"
+			],
+			[
+				"Snippet: ",
+				"Snippet: main()"
+			],
+			[
+				"Snippet: gen",
+				"Snippet: gen_server Callbacks"
+			],
+			[
+				"ssb",
+				"Set Syntax: Batch File"
+			],
+			[
+				"packin",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Enable Package"
+			],
+			[
+				"insert",
+				"InsertDate: Custom"
+			],
+			[
+				"date",
+				"InsertDate: Custom"
+			],
+			[
+				"ssj",
+				"Set Syntax: Java"
+			],
+			[
+				"Snippet: ge",
+				"Snippet: gen_server Callbacks"
+			],
+			[
+				"packe",
+				"Package Control: Enable Package"
+			],
+			[
+				"Pack",
+				"Package Control: Enable Package"
+			],
+			[
+				"pa",
+				"Package Control: Enable Package"
+			],
+			[
+				"gens",
+				"Snippet: gen_server Callbacks"
+			]
+		],
+		"width": 528.0
+	},
+	"console":
+	{
+		"height": 236.0,
+		"history":
+		[
+			"import urllib.request,os,sys; exec(\"if sys.version_info < (3,) or os.name != 'nt': raise OSError('This code is for Windows ST3 only!')\"); pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/E/GitHub/my_code/django/mysite",
+		"/E/GitHub/my_code/django/mysite/my_app",
+		"/E/GitHub/my_code/django/mysite/my_app/static",
+		"/E/GitHub/my_code/django/mysite/mysite"
+	],
+	"file_history":
+	[
+		"/E/Job/jooyou/t5/server_trunk/config/src/cfg_activity_box.erl",
+		"/E/Job/jooyou/t5/common_lib/iex/qqGoldShop.iex",
+		"/E/Job/jooyou/t5/common_lib/iex/payReturn.iex",
+		"/E/Job/jooyou/t5/doc/sh/public_client.sh",
+		"/E/Job/jooyou/t5/doc/sh/daily_public.sh",
+		"/E/Job/jooyou/t5/doc/sh/daily_public_rpc.sh",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/gift/mod_level_notice.erl",
+		"/E/Job/jooyou/t5/server_trunk/config/src/cfg_level_notice.erl",
+		"/E/Job/jooyou/t5/server_trunk/hrl/global_lang.hrl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_map_ets.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_item_map_effect.erl",
+		"/E/Job/jooyou/t5/server_trunk/script/gen_level_notice.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/gen_npc_exchange.php",
+		"/E/Job/jooyou/t3/server_trunk/update/update_mnesia_0_3_6.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/common_config.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/common_global.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mgeem_event.erl",
+		"/E/Job/jooyou/t5/server_trunk/update/update_mnesia_1_1.erl",
+		"/E/Job/jooyou/t5/server_trunk/config/src/cfg_hunqi.erl",
+		"/E/Job/jooyou/t5/server_trunk/hrl/log_consume_type.hrl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_hunqi_refine.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_role_hunqi.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/db.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mt_cehua.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/login/src/mgeel_account_server.erl",
+		"/E/Job/jooyou/t5/server_trunk/hrl/mnesia.hrl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/mgeeweb/src/mod/mod_web_db_service.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config.common.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/admin/update/run_schedule_update.sh",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/admin/update/role_info_to_2144.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/admin/update/combat_info_to_2144.php",
+		"/E/Job/jooyou/t5/server_trunk/app/game/login/src/presstest.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mtpubs_tool.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mt_mnesia.erl",
+		"/E/Job/jooyou/t5/server_trunk/mingchao.conf",
+		"/E/Job/jooyou/t5/server_trunk/hrl/include.mk",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/admin/module/setting/switch_manager.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config.php",
+		"/E/Job/jooyou/t5/server_trunk/config/src/Makefile",
+		"/E/Job/jooyou/t5/server_trunk/proto/Makefile",
+		"/E/Job/jooyou/t5/server_trunk/script/check_missions.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/daily_dialyzer",
+		"/E/Job/jooyou/t5/server_trunk/script/gen_persistent_table.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/make_config_beam.sh",
+		"/E/Job/jooyou/t5/server_trunk/app/game/manager/src/manager_log.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/fight/mof_common.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_map_buff.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/Makefile",
+		"/E/Job/jooyou/t5/server_trunk/mgectl",
+		"/E/Job/jooyou/t5/server_trunk/cfile",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/admin/update/crontab.txt",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/Emakefile",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/test/test_publish.php",
+		"/E/Job/jooyou/t5/server_trunk/script/get_agent_name.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/hefu.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/lixiancheji.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/make_mission_beam.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/start_gateway.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/start_mtpubs.sh",
+		"/E/Job/jooyou/t5/doc/sh/build_config.sh",
+		"/E/Job/jooyou/t5/server_trunk/代码记录.erl",
+		"/E/Job/jooyou/t5/server_trunk/script/ProtoParse.php",
+		"/E/Job/jooyou/t5/server_trunk/script/ProtoOfServerMaps.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/user/reconnect.php",
+		"/E/Job/jooyou/t5/server_trunk/config/src/cfg_copy.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mission/mod_mission_group.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/behavior/src/behavior_serverlog.erl",
+		"/E/Job/jooyou/t5/server_trunk/config/src/cfg_mission.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_role_retrieve.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/user/test.php",
+		"/E/Job/jooyou/t5/server_trunk/app/game/mgeeweb/src/mod/mod_account_service.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/mgeeweb/src/mgeeweb_web.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/common_misc.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/common_time.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/activity/mod_activity_box.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/activity/mod_activity_manager.erl",
+		"/E/Job/jooyou/t5/doc/sh/compile_ming2_client.sh",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_map_actor.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_map_fight.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_map_role.erl",
+		"/E/Job/jooyou/t5/doc/sh/co_client_data.sh",
+		"/E/Job/jooyou/t5/doc/sh/game_env.sh",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/race/mod_race_handler.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_role_birth.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config.inc.php",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_icon_notify.erl",
+		"/E/Job/jooyou/t5/doc/sh/checkout_release.sh",
+		"/E/Job/jooyou/t5/doc/sh/checkout_client_for_static_server.sh",
+		"/E/Job/jooyou/t5/doc/sh/make_release_server.sh",
+		"/E/Job/jooyou/t5/doc/sh/dynamic_update.sh",
+		"/E/Job/jooyou/t5/doc/sh/del_branch.sh.bak",
+		"/E/Job/jooyou/t5/doc/sh/del_branch.sh",
+		"/E/Job/jooyou/t5/doc/sh/debug_checkout_client.sh",
+		"/E/Job/jooyou/t5/doc/sh/daily_release.sh",
+		"/E/Job/jooyou/t5/doc/sh/daily_public.sh.sh.bak",
+		"/E/Job/jooyou/t5/doc/sh/daily_public.sh.bak2",
+		"/E/Job/jooyou/t5/doc/sh/daily_public.sh.bak",
+		"/E/Job/jooyou/t5/doc/sh/create_branch.sh.bak",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/common_item_logger.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mod/common_item_log_server.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mysql_persistent_config.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/common/src/mod/mod_subscriber_dumper.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/mod/mod_hook_shop.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/shop/mod_shop_handler.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/gift/mod_role_gift.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/user/game.php",
+		"/E/Job/jooyou/t5/doc/sh/create_branch.sh",
+		"/E/Job/jooyou/t5/server_trunk/my_temp.erl",
+		"/E/Job/jooyou/t5/server_trunk/app/game/role/src/mod/mod_role_depot.erl",
+		"/E/Job/jooyou/t5/server_trunk/setting/common.config",
+		"/E/Job/jooyou/t5/server_trunk/script/check_update.sh",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/user/create_user.php",
+		"/E/Job/jooyou/t5/server_trunk/script/serialize/module/npc/NPC.php",
+		"/E/Job/jooyou/t5/server_trunk/script/serialize/module/mission_setting/MissionSetting.php",
+		"/E/Job/jooyou/t5/server_trunk/script/serialize/mapliushi.php",
+		"/E/Job/jooyou/t5/server_trunk/script/lib_env.sh",
+		"/E/Job/jooyou/t5/server_trunk/script/build_protobuf.php",
+		"/E/Job/jooyou/t5/server_trunk/hrl/game.sql",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/test/test_svn_log.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/test/test_svn_daily_work.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/test/reload_config.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config_servers.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config.url.php",
+		"/E/Job/jooyou/t5/server_trunk/app/web/game.www/config/config.key.php",
+		"/E/Job/jooyou/t5/server_trunk/app/game/map/src/fb/mod_common_fb.erl",
+		"/E/Job/jooyou/t5/common_lib/proto/game.proto",
+		"/E/Job/jooyou/t5/server_trunk/hrl/attr_define.hrl"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"",
+			"*.php",
+			"",
+			"*.sh",
+			"",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*.erl, *.hrl, *.sql, *.config, *.sh",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"cfg_*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"update*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"update.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*update.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*.php",
+			"*.erl, *.hrl, *.sql, *.config, *.sh, *.php",
+			"*.erl, *.hrl, *.sql, *.config, *.sh",
+			"*.erl, *.hrl, *.sql, *.config",
+			"mof_*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config",
+			"mof_*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config, *.php",
+			"*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config, *",
+			"*.erl, *.hrl, *.sql, *.config",
+			"mof_*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config",
+			"update_*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql, *.config",
+			"*.erl, *.hrl, *.sql",
+			"",
+			"*.erl",
+			"mof_*.erl",
+			"*.erl",
+			"*.php",
+			"*.erl",
+			"",
+			"*.hrl",
+			"",
+			"*.erl, *.hrl",
+			"*.erl, rebar.config",
+			"*.erl",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"born_tites",
+			"rem_titls",
+			"born_tites",
+			"cfg_activity_box",
+			"activityBoxMisc.iex",
+			"do_refresh_npc",
+			"do_ready_notify",
+			"refresh_npc",
+			"SkillInfo",
+			"do_role_attack",
+			"check_pay_rebate_fetch",
+			"check_pay_type",
+			"check_pay_rebate_info",
+			"PAY_TYPE_SECOND_PAY",
+			"m_pay_rebate_info_tos",
+			"check_shop_items",
+			"ERR_SHOP_SHOP_NOT_EXIST",
+			"不存在该商店",
+			"m_shop_enter_tos",
+			"ERR_SEND_NPC_START_TOO_FAR",
+			"m_send_npc_start_tos",
+			"cfg_qqgold_shop",
+			"mod_api_service",
+			"{pay,",
+			"do_pay",
+			"mod_role_pay",
+			"add_online_pay_gold",
+			"add_daily_pay",
+			"t_do_pay",
+			"t_do_pay2",
+			"{pay,",
+			"mod_role_pay",
+			"cfg_pay_return",
+			"qqgold_shop_buy",
+			"m_qqgold_shop_buy_tos",
+			"p_sys_config",
+			"remain_times",
+			"_grade_pannel",
+			"m_grade_pannel_toc",
+			"do_monster_attack",
+			"21000503",
+			"Caster",
+			"npc_skill",
+			"monster_attack",
+			"do_monster_attack",
+			"mod_robot",
+			"map_records",
+			"21000508",
+			"zzzw.35wan",
+			"更新资源",
+			"SKILL_BAN_YUE_JIAN_FA",
+			"PUBLIC_SH",
+			"斗破苍穹",
+			"release",
+			"dpcq3",
+			"),(",
+			"m_pay_rebate_fetch_tos",
+			"check_pay_rebate_fetch",
+			"B_beta0.0.1",
+			"DBG",
+			"RoleID",
+			"start_fight",
+			"稻草人",
+			"check_icon",
+			"_icon_list",
+			"m_icon_list_toc",
+			"icon_list",
+			"icon",
+			"PAY_TYPE_DAILY_PAY",
+			"loop",
+			"check_pay_rebate_fetch",
+			"PAY_TYPE_SECOND_PAY",
+			"do_first_and_second_pay_info",
+			"PAY_TYPE_SECOND_PAY",
+			"broad_pay_rebate",
+			"PAY_TYPE_SECOND_PAY",
+			"cfg_pay_rebate",
+			"payRebate.iex",
+			"mof_fight_time",
+			"ERR_FIGHT_ILLEGAL_SKILL_INTERVAL",
+			"mod_map_buff",
+			"update",
+			"19429",
+			"BUFF_TYPE_STOP_ENHANCE",
+			"10500",
+			"10400",
+			"m_role2_fight_reload_toc",
+			"71000101",
+			"尸化人",
+			"SKILL_EFFECT_TYPE_CHARGE",
+			"do_role_attack",
+			"SKILL_EFFECT_TYPE_COLLIDE",
+			"SKILL_EFFECT_TYPE_CHARGE",
+			"do_role_attack",
+			"attack_at_pos",
+			"get_targets",
+			"SKILL_TARGET_TYPE_SELF",
+			"start_fight",
+			"do_role_attack",
+			"start_fight",
+			"fight_error_toc",
+			"TargetPos",
+			"CasterAttr2",
+			"SkillInfo2",
+			"check_start_fight",
+			"is_skill_be_forbin",
+			"start_fight",
+			"change_caster_direction",
+			"do_role_attack",
+			"mof_before_attack",
+			"Error",
+			"handle_result",
+			"do_role_attack",
+			"CasterAttr2",
+			"SkillInfo2",
+			"TX, TY",
+			"get_attack_pos",
+			"m_role2_getroleattr_toc",
+			"_role2_getrole",
+			"m_role2_getroleattr_tos",
+			"m_role2_getroleattr_toc",
+			"m_role2_getroleattr_tos",
+			"do_role_attack_single_target",
+			"do_role_attack",
+			"19402",
+			"TY2",
+			"TX2",
+			"SKILL_EFFECT_TYPE_CHARGE"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"svn:",
+			"mzzzw",
+			"zzzw",
+			"mzzzw",
+			"ZZZW",
+			"zzzw",
+			"p_role_base",
+			"mod_reinforce_suit",
+			"PUT_SHOES",
+			"PUT_LEG",
+			"PUT_BELT",
+			"PUT_BRACERS",
+			"PUT_ARMOR",
+			"PUT_HELMET",
+			"PUT_NECKLACE",
+			"PUT_FINGER",
+			"PUT_WEAPON_2",
+			"PUT_WEAPON",
+			"CATEGORY_DEX",
+			"CATEGORY_MAGIC",
+			"CATEGORY_PHY",
+			"#r_skill_detail",
+			"PUT_EMPEROR_EQUIP",
+			"PUT_FASHION_PENDANT",
+			"PUT_FASHION_RING",
+			"PUT_FASHION_BANGLE",
+			"PUT_FASHION_GOBE",
+			"PUT_FASHION_WING",
+			"PUT_FASHION_CLOAK",
+			"PUT_SHENQI",
+			"PUT_JINGJIE",
+			"PUT_MOUNT",
+			"PUT_FASHION",
+			"PUT_HAND_2",
+			"PUT_FINGER_2",
+			"PUT_SHOES",
+			"PUT_HAND_1",
+			"PUT_CAESTUS",
+			"PUT_BREAST",
+			"PUT_ARMET",
+			"PUT_FINGER_1",
+			"PUT_NECKLACE",
+			"PUT_ARM",
+			"s2",
+			"os:timestamp()",
+			"os:now()"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": true,
+		"whole_word": true,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "mysite/urls.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 756,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								732,
+								732
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "mysite/settings.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2652,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1080,
+								1080
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": -0.0,
+						"translation.y": 600.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "my_app/static/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 93,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								93,
+								93
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "my_app/static/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 84,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								83,
+								83
+							]
+						],
+						"settings":
+						{
+							"auto_name": "",
+							"syntax": "Packages/CSS/CSS.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "my_app/views.py",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 63,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.GoSublime-output":
+	{
+		"height": 122.0
+	},
+	"output.MarGo-output":
+	{
+		"height": 122.0
+	},
+	"output.exec":
+	{
+		"height": 194.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 275.0
+	},
+	"pinned_build_system": "",
+	"project": "mysite.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": false,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"make",
+				"server_trunk\\script\\Makefile"
+			],
+			[
+				"mod_activity_box.erl",
+				"server_trunk\\app\\game\\map\\src\\activity\\mod_activity_box.erl"
+			],
+			[
+				"gen_activity_misc",
+				"server_trunk\\script\\gen_activity_misc.php"
+			],
+			[
+				"modelans",
+				"server_trunk\\app\\game\\map\\src\\fb\\model_answer.erl"
+			],
+			[
+				"mod_activity_box",
+				"server_trunk\\app\\game\\map\\src\\activity\\mod_activity_box.erl"
+			],
+			[
+				"moffigh",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl.backup"
+			],
+			[
+				"mofbe",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_before_attack.erl"
+			],
+			[
+				"mof_fighth",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"my",
+				"server_trunk\\my_temp.erl"
+			],
+			[
+				"err",
+				"server_trunk\\hrl\\err_code.hrl"
+			],
+			[
+				"host",
+				"C:\\Windows\\System32\\drivers\\etc\\hosts"
+			],
+			[
+				"qqgoldshop",
+				"common_lib\\iex\\qqGoldShop.iex"
+			],
+			[
+				"",
+				"server_trunk\\config\\src\\cfg_qqgold_shop.erl"
+			],
+			[
+				"mod_daily_pay",
+				"server_trunk\\app\\game\\map\\src\\activity\\mod_daily_pay.erl"
+			],
+			[
+				"payreturn",
+				"common_lib\\iex\\payReturn.iex"
+			],
+			[
+				"g",
+				"common_lib\\proto\\game.proto"
+			],
+			[
+				"modrolepay",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_pay.erl"
+			],
+			[
+				"c",
+				"common_lib\\proto\\common.proto"
+			],
+			[
+				"cfgmonster",
+				"server_trunk\\config\\src\\cfg_monster.erl"
+			],
+			[
+				"mgeemamp",
+				"server_trunk\\app\\game\\map\\src\\mgeem_map.erl"
+			],
+			[
+				"commonmisc",
+				"server_trunk\\app\\game\\common\\src\\common_misc.erl"
+			],
+			[
+				"moffih",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"mof_figh",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"modrobot",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_robot.erl"
+			],
+			[
+				"cfgskill",
+				"server_trunk\\config\\src\\cfg_skill.erl"
+			],
+			[
+				"mof",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"skill",
+				"server_trunk\\hrl\\skill.hrl"
+			],
+			[
+				"daily_public_rpc",
+				"sh\\daily_public_rpc.sh"
+			],
+			[
+				"daily_public",
+				"sh\\daily_public.sh"
+			],
+			[
+				"modpayrebate",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_pay_rebate.erl"
+			],
+			[
+				"checkout_release",
+				"sh\\checkout_release.sh"
+			],
+			[
+				"create_branch",
+				"sh\\create_branch.sh"
+			],
+			[
+				"co_client_data",
+				"sh\\co_client_data.sh"
+			],
+			[
+				"check",
+				"sh\\checkout_release.sh"
+			],
+			[
+				"creat",
+				"sh\\create_branch.sh"
+			],
+			[
+				"cfgksill",
+				"server_trunk\\config\\src\\cfg_skill.erl"
+			],
+			[
+				"moffi",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"cfgmon",
+				"server_trunk\\config\\src\\cfg_monster.erl"
+			],
+			[
+				"cfg",
+				"server_trunk\\config\\src\\cfg_activity.erl"
+			],
+			[
+				"mofbef",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_before_attack.erl"
+			],
+			[
+				"ser",
+				"server_trunk\\proto\\serverMap.iex"
+			],
+			[
+				"cfgpayre",
+				"server_trunk\\config\\src\\cfg_pay_rebate.erl"
+			],
+			[
+				"mgeem.erl",
+				"server_trunk\\app\\game\\map\\src\\mgeem.erl"
+			],
+			[
+				"mangenode",
+				"server_trunk\\app\\game\\manager\\src\\manager_node.erl"
+			],
+			[
+				"mod_race_score",
+				"server_trunk\\app\\game\\map\\src\\race\\mod_race_score.erl"
+			],
+			[
+				"cfg_pay_rebate",
+				"server_trunk\\config\\src\\cfg_pay_rebate.erl"
+			],
+			[
+				"gen_pay_rebate",
+				"server_trunk\\script\\gen_pay_rebate.php"
+			],
+			[
+				"moffighthand",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"npcai",
+				"server_trunk\\app\\game\\map\\src\\npc\\npc_ai.erl"
+			],
+			[
+				"errco",
+				"server_trunk\\hrl\\err_code.hrl"
+			],
+			[
+				"mod_mapbuff",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_buff.erl"
+			],
+			[
+				"cfg_buff",
+				"server_trunk\\config\\src\\cfg_buff.erl"
+			],
+			[
+				"cfg_skill",
+				"server_trunk\\config\\src\\cfg_skill.erl"
+			],
+			[
+				"mof_eff",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_effect.erl"
+			],
+			[
+				"npc_m",
+				"server_trunk\\app\\game\\map\\src\\npc\\npc_manager.erl"
+			],
+			[
+				"cfgskil",
+				"server_trunk\\config\\src\\cfg_skill.erl"
+			],
+			[
+				"mof_fight_handler",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl.backup"
+			],
+			[
+				"mofeff",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_effect.erl"
+			],
+			[
+				"at",
+				"server_trunk\\hrl\\attr_define.hrl"
+			],
+			[
+				"mofi",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl.backup"
+			],
+			[
+				"moff",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"mgeer_role",
+				"server_trunk\\app\\game\\role\\src\\mgeer_role.erl"
+			],
+			[
+				"_lang",
+				"server_trunk\\hrl\\global_lang.hrl"
+			],
+			[
+				"mof_before_attack",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_before_attack.erl"
+			],
+			[
+				"moffighh",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_handler.erl"
+			],
+			[
+				"mofifi",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_fight_filter.erl"
+			],
+			[
+				"coc",
+				"sh\\co_client_data.sh"
+			],
+			[
+				"modmapdrop",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_drop.erl"
+			],
+			[
+				"moftrap",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_trap.erl"
+			],
+			[
+				"mod_trap",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_trap.erl"
+			],
+			[
+				"mod_role_attr",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_attr.erl"
+			],
+			[
+				"attr",
+				"server_trunk\\hrl\\attr_define.hrl"
+			],
+			[
+				"mod_map_fight",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_fight.erl"
+			],
+			[
+				"commonattr",
+				"server_trunk\\app\\game\\common\\src\\common_attr.erl"
+			],
+			[
+				"modroleattr",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_attr.erl"
+			],
+			[
+				"mofatdamge",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_attack_damage.erl"
+			],
+			[
+				"mod_map_trap",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_trap.erl"
+			],
+			[
+				"cfg_fight",
+				"server_trunk\\config\\src\\cfg_fight.erl"
+			],
+			[
+				"mofe",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_effect.erl"
+			],
+			[
+				"modeff",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_item_map_effect.erl"
+			],
+			[
+				"npcw",
+				"server_trunk\\app\\game\\map\\src\\npc\\npc_walk.erl"
+			],
+			[
+				"monsterwalk",
+				"server_trunk\\config\\src\\cfg_monster_walk.erl"
+			],
+			[
+				"cfgfigh",
+				"server_trunk\\config\\src\\cfg_fight.erl"
+			],
+			[
+				"mof_effect.erl",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_effect.erl"
+			],
+			[
+				"cfgfight",
+				"server_trunk\\config\\src\\cfg_fight.erl"
+			],
+			[
+				"mofee",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_effect.erl"
+			],
+			[
+				"mod_n",
+				"server_trunk\\app\\game\\role\\src\\exchange\\mod_npc_exchange.erl"
+			],
+			[
+				"cfg_item",
+				"server_trunk\\config\\src\\cfg_item.erl"
+			],
+			[
+				"m",
+				"server_trunk\\my_temp.erl"
+			],
+			[
+				"commondeal",
+				"server_trunk\\app\\game\\common\\src\\common_deal.erl"
+			],
+			[
+				"modbag",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_bag.erl"
+			],
+			[
+				"mod_hunt",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_hunt.erl"
+			],
+			[
+				"gen_level_notice",
+				"server_trunk\\script\\gen_level_notice.sh"
+			],
+			[
+				"mae",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_map_ets.erl"
+			],
+			[
+				"cfg_level_notice",
+				"server_trunk\\config\\src\\cfg_level_notice.erl"
+			],
+			[
+				"mod_roleattr",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_attr.erl"
+			],
+			[
+				"mod_siege_fb.erl",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_siege_fb.erl"
+			],
+			[
+				"gen_equifo",
+				"server_trunk\\script\\gen_equip_foster.php"
+			],
+			[
+				"mod_level_notice",
+				"server_trunk\\app\\game\\role\\src\\gift\\mod_level_notice.erl"
+			],
+			[
+				"gen_npc_exchange",
+				"server_trunk\\script\\gen_npc_exchange.php"
+			],
+			[
+				"mod_mcm_parser",
+				"server_trunk\\app\\game\\map\\src\\mod\\mod_mcm_parser.erl"
+			],
+			[
+				"modchatm",
+				"server_trunk\\app\\game\\chat\\src\\mod\\mod_chat_gm.erl"
+			],
+			[
+				"modroleskill",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_skill.erl"
+			],
+			[
+				"modrolescore",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_score.erl"
+			],
+			[
+				"mananode",
+				"server_trunk\\app\\game\\manager\\src\\manager_node.erl"
+			],
+			[
+				"updatemn",
+				"server_trunk\\app\\behaviour\\b_update_mnesia.erl"
+			],
+			[
+				"modlevelgift",
+				"server_trunk\\app\\game\\role\\src\\gift\\mod_level_gift.erl"
+			],
+			[
+				"mod_equire",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_equip_recycle.erl"
+			],
+			[
+				"mofatta",
+				"server_trunk\\app\\game\\map\\src\\fight\\mof_attack_damage.erl"
+			],
+			[
+				"attrde",
+				"server_trunk\\hrl\\attr_define.hrl"
+			],
+			[
+				"mod_subscriber_dumper",
+				"server_trunk\\app\\game\\common\\src\\mod\\mod_subscriber_dumper.erl"
+			],
+			[
+				"dpcq",
+				"server_trunk\\hrl\\sql\\dpcq_game.sql"
+			],
+			[
+				"common_item_log_server",
+				"server_trunk\\app\\game\\common\\src\\mod\\common_item_log_server.erl"
+			],
+			[
+				"hosts",
+				"C:\\Windows\\System32\\drivers\\etc\\hosts"
+			],
+			[
+				"config.php",
+				"server_trunk\\app\\web\\game.www\\config\\config.php"
+			],
+			[
+				"game",
+				"server_trunk\\app\\web\\game.www\\user\\game.php"
+			],
+			[
+				"mod_role_misc",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_misc.erl"
+			],
+			[
+				"mod_lev",
+				"server_trunk\\app\\game\\role\\src\\gift\\mod_level_gift.erl"
+			],
+			[
+				"serv",
+				"server_trunk\\proto\\serverMap.iex"
+			],
+			[
+				"mod_pay_rebate",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_pay_rebate.erl"
+			],
+			[
+				"mod_role_pay",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_pay.erl"
+			],
+			[
+				"dpcq_game",
+				"server_trunk\\hrl\\sql\\dpcq_game.sql"
+			],
+			[
+				"build_config",
+				"sh\\build_config.sh"
+			],
+			[
+				"modsuper",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_super_vip.erl"
+			],
+			[
+				"modhunqire",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_hunqi_refine.erl"
+			],
+			[
+				"modrolebi",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_role_birth.erl"
+			],
+			[
+				"super",
+				"common_lib\\iex\\superVipVO.tpl"
+			],
+			[
+				"mod_map_change",
+				"server_trunk\\app\\game\\role\\src\\mod\\mod_map_change.erl"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 392.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"getlo",
+				"Function: get_load_pos"
+			],
+			[
+				"get_role_pet_collect",
+				"Function: get_role_pet_collect"
+			],
+			[
+				"apply_item_effect",
+				"Function: apply_item_effect"
+			]
+		],
+		"width": 424.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 202.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
